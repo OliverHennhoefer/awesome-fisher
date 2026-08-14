@@ -40,6 +40,33 @@ test('search navigation and deep links work', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Search', level: 1 })).toBeVisible();
 });
 
+test('the works timeline exposes dated entries as links', async ({ page }, testInfo) => {
+  await page.goto('./timeline/');
+  await expect(page.getByRole('heading', { name: 'The work in time.', level: 1 })).toBeVisible();
+  expect(await page.locator('.works-timeline-row').count()).toBeGreaterThan(40);
+  await expect(page.locator('.works-timeline-scroll')).toHaveCSS('overflow-x', testInfo.project.name === 'mobile' ? 'auto' : 'clip');
+
+  const anovaBar = page.locator('.works-timeline-bar[aria-label^="Analysis of variance,"]');
+  await expect(anovaBar).toHaveCount(1);
+  await expect(anovaBar).toHaveAttribute('href', /\/awesome-fisher\/contributions\/analysis-of-variance\/$/);
+  await anovaBar.focus();
+  await expect(anovaBar).toBeFocused();
+  await expect(page.getByText('Fisher consistency')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Read the biography' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Browse the contribution index' })).toHaveCount(0);
+});
+
+test('the primary navigation promotes timeline before biography', async ({ page }) => {
+  await page.goto('./timeline/');
+  const primaryNav = page.getByRole('navigation', { name: 'Primary navigation' });
+  const primaryLinks = primaryNav.getByRole('link');
+  await expect(primaryLinks).toHaveText(['Contributions', 'Timeline', 'Biography', 'Context', 'Search']);
+  await primaryNav.getByRole('link', { name: 'Biography', exact: true }).click();
+  await expect(page).toHaveURL(/\/awesome-fisher\/biography\/$/);
+  await expect(page.getByRole('heading', { name: 'A life across disciplines.', level: 1 })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Explore the works timeline' })).toHaveCount(0);
+});
+
 test.describe('without JavaScript', () => {
   test.use({ javaScriptEnabled: false });
 
@@ -67,7 +94,7 @@ test('core pages have no automatically detectable accessibility violations', asy
 
 test('mobile pages do not overflow horizontally', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile', 'Mobile-only layout check.');
-  for (const route of ['./', './contributions/', './contributions/fisher-information-and-score/']) {
+  for (const route of ['./', './contributions/', './contributions/fisher-information-and-score/', './timeline/', './biography/']) {
     await page.goto(route);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
     expect(overflow, route).toBe(false);

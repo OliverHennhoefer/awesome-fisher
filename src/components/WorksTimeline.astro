@@ -1,0 +1,81 @@
+---
+import type { Contribution } from '@/lib/content';
+import { fields, withBase } from '@/data/site';
+import {
+  getTimelinePlacement,
+  parseContributionPeriod,
+  WORKS_TIMELINE_END,
+  WORKS_TIMELINE_START,
+} from '@/lib/contribution-period';
+
+interface Props {
+  entries: Contribution[];
+}
+
+const { entries } = Astro.props;
+const axisYears = [1910, 1920, 1930, 1940, 1950, 1960];
+const gridPosition = (year: number) => ((year - WORKS_TIMELINE_START) / (WORKS_TIMELINE_END - WORKS_TIMELINE_START)) * 100;
+
+const prepared = entries.map((entry) => {
+  const parsed = parseContributionPeriod(entry.data.period);
+  return {
+    entry,
+    parsed,
+    placement: parsed ? getTimelinePlacement(parsed) : null,
+  };
+});
+
+const dated = prepared
+  .filter((item): item is typeof item & { parsed: NonNullable<typeof item.parsed>; placement: NonNullable<typeof item.placement> } => Boolean(item.parsed && item.placement))
+  .sort((a, b) => a.parsed.start - b.parsed.start || a.parsed.end - b.parsed.end || a.entry.data.title.localeCompare(b.entry.data.title));
+---
+
+<section class="works-timeline" aria-labelledby="works-timeline-heading">
+  <header class="works-timeline-header">
+    <div>
+      <p class="eyebrow">{WORKS_TIMELINE_START}–{WORKS_TIMELINE_END}</p>
+      <h2 id="works-timeline-heading">Documented contribution periods</h2>
+    </div>
+    <p>{dated.length} dated entries</p>
+  </header>
+
+  <div class="works-timeline-scroll" role="region" aria-label="Horizontally scrollable contribution timeline" tabindex="0">
+    <div class="works-timeline-chart">
+      <div class="works-timeline-axis" aria-hidden="true">
+        <span class="works-timeline-axis-label">Contribution</span>
+        <div class="works-timeline-axis-track">
+          {axisYears.map((year, index) => (
+            <span
+              class:list={['works-timeline-tick', { first: index === 0, last: index === axisYears.length - 1 }]}
+              style={`--timeline-position: ${gridPosition(year)}%`}
+            >{year}</span>
+          ))}
+        </div>
+      </div>
+
+      <ol class="works-timeline-rows">
+        {dated.map(({ entry, placement }) => (
+          <li class="works-timeline-row">
+            <div class="works-timeline-entry">
+              <a href={withBase(`/contributions/${entry.data.slug}/`)}>{entry.data.title}</a>
+              <span class="meta">{entry.data.period} / {fields[entry.data.fields[0]].numeral}</span>
+            </div>
+            <div class="works-timeline-track">
+              {axisYears.map((year) => (
+                <span class="works-timeline-gridline" style={`--timeline-position: ${gridPosition(year)}%`} aria-hidden="true"></span>
+              ))}
+              <a
+                class="works-timeline-bar"
+                href={withBase(`/contributions/${entry.data.slug}/`)}
+                style={`--timeline-left: ${placement.left}%; --timeline-width: ${placement.width}%`}
+                aria-label={`${entry.data.title}, ${entry.data.period} period bar`}
+                title={`${entry.data.title} — ${entry.data.period}`}
+              ><span class="sr-only">Read {entry.data.title}</span></a>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+
+</section>

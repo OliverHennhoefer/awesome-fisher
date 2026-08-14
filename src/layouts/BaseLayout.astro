@@ -51,6 +51,7 @@ const path = Astro.url.pathname;
         <nav class="site-nav" aria-label="Primary navigation">
           <a href={withBase('/contributions/')} aria-current={path.includes('/contributions') ? 'page' : undefined}>Contributions</a>
           <a href={withBase('/timeline/')} aria-current={path.includes('/timeline') ? 'page' : undefined}>Timeline</a>
+          <a href={withBase('/biography/')} aria-current={path.includes('/biography') ? 'page' : undefined}>Biography</a>
           <a href={withBase('/context/')} aria-current={path.includes('/context') ? 'page' : undefined}>Context</a>
           <a href={withBase('/search/')} aria-current={path.includes('/search') ? 'page' : undefined}>Search</a>
         </nav>
@@ -64,6 +65,8 @@ const path = Astro.url.pathname;
         <p><strong>The Fisher Index</strong><br />An evolving, critical guide to a consequential scientific legacy.</p>
         <div class="footer-links">
           <a href={withBase('/life/')}>Life and work</a>
+          <a href={withBase('/timeline/')}>Timeline</a>
+          <a href={withBase('/biography/')}>Biography</a>
           <a href={withBase('/editorial-policy/')}>Editorial policy</a>
           <a href={withBase('/sources/')}>Sources</a>
           <a href={withBase('/contribute/')}>Contribute</a>
