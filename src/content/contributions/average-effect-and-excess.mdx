@@ -1,0 +1,57 @@
+---
+title: Average effect, average excess, and genetic variance
+slug: average-effect-and-excess
+summary: Fisher’s average effect describes an allele’s regression-scale contribution, while average excess describes how its carriers differ from the population mean.
+aliases: [Fisher’s average effect, average effect of an allele, Fisher’s average effect of gene substitution, Fisher’s average excess, average excess of an allele, Fisherian decomposition of genetic variance, Fisherian additive genetic variance, Fisherian epistasis, Fisher decomposition]
+fields: [genetics-evolution]
+kind: concept
+period: 1918–1930
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher developed regression-based allele effects and variance decomposition while synthesizing Mendelian inheritance with biometric variation.
+collaborators: []
+prerequisites: [Allele frequency, Regression, Quantitative traits]
+related: [infinitesimal-model, fundamental-theorem-natural-selection, wright-fisher-model]
+references: [fisher-1918-relatives, fisher-1930-genetical, alvarez-castro-yang-2012, crow-1990]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Genes can act through dominance and interactions, yet resemblance between relatives and response to selection depend strongly on the part of variation predictable from allele counts. Fisher’s framework separates that transmissible statistical component from other genotype effects.
+
+## Intuition
+
+The average excess asks a descriptive question: how different are people or organisms carrying an allele? The average effect asks a regression question: how much does replacing one allele by another change the predicted trait, averaged over the population’s genotype context? Association and substitution are therefore related but not interchangeable.
+
+## Prerequisites
+
+Consider alleles $A_1,A_2$ with frequencies $p,q$ and genotype values. Define allele count as a predictor of phenotype or fitness under the current population’s mating and genotype frequencies.
+
+## Formal statement
+
+An average effect $\alpha_i$ is the coefficient in the least-squares projection of genotypic value onto allele counts. An average excess $a_i$ is
+
+$$a_i=\mathbb E(G\mid\text{a gene drawn from an individual is }A_i)-\bar G.$$
+
+The additive genetic value is the fitted value from the projection, and its variance $V_A$ is the additive genetic variance. Relations between $a_i$ and $\alpha_i$ depend on population structure and departures from random mating.
+
+## Worked example
+
+If genotypes $aa,Aa,AA$ have values $0,1,3$, the phenotype is not purely additive because the two-allele step is not linear. A regression on the number of $A$ alleles still yields the best additive prediction for the current genotype frequencies; changing those frequencies can change the fitted average effect.
+
+## History and attribution
+
+Fisher’s 1918 paper partitioned variance to reconcile continuous biometric traits with Mendelian inheritance. *The Genetical Theory of Natural Selection* further developed average effects, excesses, and their relationship to fitness. Later quantitative genetics clarified the distinction and the assumptions under which causal substitution language is defensible.
+
+## Modern use
+
+Additive genetic variance underlies the breeder’s equation, heritability, genomic prediction, association studies, and interpretations of the fundamental theorem. Statistical epistasis denotes residual interaction after a chosen projection; it need not match a molecular mechanism called epistasis.
+
+## Limits and debates
+
+Average effects are population- and environment-dependent, not immutable properties of alleles. Linkage disequilibrium, population structure, gene–environment interaction, and nonrandom mating complicate interpretation. Additive variance can be predictive without implying that biological action is literally additive.

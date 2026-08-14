@@ -1,0 +1,56 @@
+---
+title: The Fisher–Muller hypothesis
+slug: fisher-muller-hypothesis
+summary: The Fisher–Muller hypothesis argues that recombination can accelerate adaptation by bringing beneficial mutations from different lineages together.
+aliases: [Fisher–Muller argument, Fisher–Muller effect, Fisher–Muller model, Fisher–Muller theory, Fisher–Muller advantage of sex, Fisher–Muller hypothesis of recombination]
+fields: [genetics-evolution]
+kind: principle
+period: 1930–1932
+difficulty: intermediate
+attribution:
+  status: co-developed
+  note: Fisher and Hermann J. Muller independently articulated closely related advantages of recombination in adapting populations.
+collaborators: [Hermann J. Muller]
+prerequisites: [Recombination, Beneficial mutation, Linkage]
+related: [fundamental-theorem-natural-selection, wright-fisher-model, fisherian-runaway-selection]
+references: [fisher-1930-genetical, muller-1932-sex, hartfield-keightley-2012]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Sex and recombination are costly, so evolutionary biology needs mechanisms that can offset those costs. Fisher and Muller identified one: asexual lineages force beneficial mutations to compete, whereas recombination can unite them.
+
+## Intuition
+
+Suppose mutation $A$ arises in one individual and mutation $B$ in another. Without recombination, the $A$ and $B$ lineages compete until one wins, and the double mutant must await another mutation. With recombination, offspring can inherit both improvements.
+
+## Prerequisites
+
+The mechanism requires multiple selected loci, beneficial variants arising on different genetic backgrounds, and enough linkage for those backgrounds to interfere. Population size and the supply of beneficial mutation strongly affect its importance.
+
+## Formal statement
+
+In a two-locus illustration with haplotypes $Ab$ and $aB$, recombination at rate $r$ produces $AB$ at a rate proportional to
+
+$$r\,f_{Ab}f_{aB},$$
+
+where the $f$ terms are haplotype frequencies. If both $A$ and $B$ are beneficial, $AB$ can combine gains that were previously trapped in competing lineages.
+
+## Worked example
+
+If $f_{Ab}=f_{aB}=0.1$ and $r=0.5$, the simple random-mating term for producing $AB$ through recombination is proportional to $0.005$ per generation. In a strictly asexual population it is zero unless a further mutation occurs.
+
+## History and attribution
+
+Fisher discussed the acceleration of adaptation through gene combination in 1930. Muller independently developed a closely related argument in 1932. Their shared eponym is appropriate; neither contribution should be collapsed into the other, and modern population-genetic models go far beyond their verbal arguments.
+
+## Modern use
+
+The hypothesis informs work on clonal interference, the evolution of recombination, microbial adaptation, viral reassortment, and experimental evolution. It predicts the greatest benefit when many beneficial mutations segregate concurrently.
+
+## Limits and debates
+
+Recombination can also break favorable combinations and carries ecological and genetic costs. The Fisher–Muller mechanism is one hypothesis among several for sex and recombination, not a complete explanation. Its strength depends on linkage, epistasis, population size, and the distribution of fitness effects.

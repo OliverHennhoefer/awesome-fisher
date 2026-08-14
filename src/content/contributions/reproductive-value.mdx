@@ -1,0 +1,56 @@
+---
+title: Fisher’s reproductive value
+slug: reproductive-value
+summary: Reproductive value weights an individual’s expected future contribution to population growth by age, stage, sex, or other demographic class.
+aliases: [Fisher reproductive value, Fisher’s reproductive value, Fisher reproductive-value weighting, reproductive value weighting]
+fields: [genetics-evolution]
+kind: concept
+period: "1930"
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher introduced reproductive value in age-structured population reasoning; later demographic theory formalized it with projection matrices.
+collaborators: []
+prerequisites: [Life tables, Population growth, Eigenvectors]
+related: [fundamental-theorem-natural-selection, fishers-principle, wright-fisher-model]
+references: [fisher-1930-genetical, grafen-2006, ewens-2004]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+One newborn, one breeding adult, and one post-reproductive adult do not contribute equally to a population’s future. Reproductive value supplies the weights needed to aggregate heterogeneous classes without counting every individual as demographically equivalent.
+
+## Intuition
+
+A class has high reproductive value when its members are likely to survive and produce many descendants, especially soon. Contributions far in the future are discounted by population growth because a growing future population makes any one descendant a smaller share of the whole.
+
+## Prerequisites
+
+For a population projection matrix $L$, the class-abundance vector changes by $n_{t+1}=Ln_t$. Let the dominant eigenvalue $\lambda$ be the long-run growth factor.
+
+## Formal statement
+
+The reproductive-value vector $v$ is the positive left eigenvector
+
+$$v^\top L=\lambda v^\top.$$
+
+Then total reproductive value grows coherently: $v^\top n_{t+1}=\lambda v^\top n_t$. Its overall scale is arbitrary, so it is usually normalized relative to a chosen class or to the stable class distribution.
+
+## Worked example
+
+For $L=\begin{pmatrix}0&2\\0.5&0\end{pmatrix}$, the dominant eigenvalue is $1$. A left eigenvector satisfies $v_2=2v_1$, so a member of the second class carries twice the reproductive value of a member of the first under this model.
+
+## History and attribution
+
+Fisher introduced reproductive value in *The Genetical Theory of Natural Selection* while connecting demography and selection. Later work in matrix population models and evolutionary theory gave the concept its modern eigenvector form and linked it more rigorously to gene-frequency change.
+
+## Modern use
+
+Reproductive-value weighting appears in age-structured selection, kin selection, conservation demography, epidemiology, and multitype branching processes. It helps distinguish raw head counts from contributions relevant to long-run ancestry.
+
+## Limits and debates
+
+Values depend on the demographic model, environment, time scale, and class definition. Density dependence and changing environments can prevent a fixed eigenvector from describing the future. Reproductive value is a mathematical weight, not a moral judgment about the worth of organisms or people.

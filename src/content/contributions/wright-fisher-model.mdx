@@ -1,0 +1,58 @@
+---
+title: The Wright–Fisher model
+slug: wright-fisher-model
+summary: The Wright–Fisher model represents genetic drift as random sampling of a finite population’s gene copies in discrete, nonoverlapping generations.
+aliases: [Fisher–Wright model, Wright–Fisher population model, Wright–Fisher sampling model, Wright–Fisher process, Wright–Fisher chain, Wright–Fisher diffusion, neutral Wright–Fisher model, Wright–Fisher model with selection, Wright–Fisher model with mutation, multiallelic Wright–Fisher model, multilocus Wright–Fisher model, structured Wright–Fisher model]
+fields: [genetics-evolution]
+kind: model
+period: 1922–1931 and later formalization
+difficulty: intermediate
+attribution:
+  status: co-developed
+  note: Fisher and Sewall Wright developed related finite-population sampling models; the standard synthesized model and its name were consolidated later.
+collaborators: [Sewall Wright]
+prerequisites: [Binomial distribution, Allele frequency, Markov chains]
+related: [fundamental-theorem-natural-selection, fisher-kpp-wave, infinitesimal-model, average-effect-and-excess]
+references: [fisher-1922-dominance-ratio, fisher-1930-genetical, ishida-rosales-2020, ewens-2004]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Even alleles with identical fitness change frequency in a finite population because reproduction is a sampling process. Wright–Fisher is the baseline model for quantifying that genetic drift and for adding mutation, selection, migration, or population structure.
+
+## Intuition
+
+Form the next generation by drawing gene copies independently from the current generation’s gene pool. A frequency of one half is only the expected outcome; the realized number fluctuates. Repeating the sampling eventually loses or fixes a neutral allele.
+
+## Prerequisites
+
+In a diploid population of constant size $N$, there are $2N$ copies at an autosomal locus. Let $p_t$ be the frequency of allele $A$ in generation $t$.
+
+## Formal statement
+
+Under the neutral biallelic model,
+
+$$X_{t+1}\mid p_t\sim\operatorname{Binomial}(2N,p_t),
+\qquad p_{t+1}=\frac{X_{t+1}}{2N}.$$
+
+Thus $\mathbb E(p_{t+1}\mid p_t)=p_t$ and $\operatorname{Var}(p_{t+1}\mid p_t)=p_t(1-p_t)/(2N)$. The Wright–Fisher diffusion is a continuous-time, large-population approximation, not the original discrete chain.
+
+## Worked example
+
+With $N=50$ and $p_t=0.4$, the next generation contains $X_{t+1}\sim\operatorname{Binomial}(100,0.4)$ copies. Its expected frequency remains $0.4$, with standard deviation $\sqrt{0.4(0.6)/100}\approx0.049$.
+
+## History and attribution
+
+Fisher analyzed binomial sampling and finite-population variation in the 1920s, while Wright developed parallel and more explicit random-drift models. Historical scholarship shows that the textbook “Wright–Fisher model” is a later synthesis rather than a single jointly authored formula. Both names belong; their broader views of evolution differed sharply.
+
+## Modern use
+
+The model underlies population-genetic likelihoods, diffusion theory, fixation probabilities, coalescent approximations, genetic association null models, and simulations. Multiallelic, multilocus, selected, mutating, migrating, and structured versions modify its transition rule.
+
+## Limits and debates
+
+Real populations overlap in generations, vary in size, have unequal reproductive success, and are spatially structured. Independent sampling can therefore misstate drift. Effective population size is often introduced to match some variance property, but no single effective size captures every departure from the model.

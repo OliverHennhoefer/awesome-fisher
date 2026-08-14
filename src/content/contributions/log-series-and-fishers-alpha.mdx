@@ -1,0 +1,60 @@
+---
+title: The log-series distribution and Fisher’s alpha
+slug: log-series-and-fishers-alpha
+summary: Fisher, Corbet, and Williams used a logarithmic-series abundance model whose parameter alpha summarizes species diversity across samples.
+aliases: [Fisher’s logarithmic series distribution, Fisher log-series distribution, Fisher log-series model, Fisher’s species-abundance model, Fisher–Corbet–Williams log-series model, Fisher’s alpha, Fisher’s alpha diversity index, Fisher’s paradox of species abundance, Fisher logarithmic series, Fisher’s log series, Fisher logseries model, Fisher alpha diversity index, Fisher–Corbet–Williams log series]
+fields: [statistical-inference, genetics-evolution]
+kind: model
+period: "1943"
+difficulty: intermediate
+attribution:
+  status: co-developed
+  note: Fisher supplied the model in a joint empirical study with Alexander Steven Corbet and Carrington Bonsor Williams, whose collections motivated and tested it.
+collaborators: [Alexander Steven Corbet, Carrington Bonsor Williams]
+prerequisites: [Count distributions, Species abundance, Logarithms]
+related: [likelihood-and-maximum-likelihood]
+references: [fisher-corbet-williams-1943, smith-etal-2014-macroecology]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Ecological samples contain many rare species and a few common ones. The log-series model gave an early quantitative account of that pattern and Fisher’s alpha supplied a diversity measure less directly tied to sample size than raw species count.
+
+## Intuition
+
+For every species seen twice, a log-series community predicts more species seen once and fewer seen three, four, or more times. One parameter controls the overall richness scale; another governs how quickly frequencies decline.
+
+## Prerequisites
+
+Let $a_n$ be the expected number of species represented by exactly $n$ sampled individuals. Let $S=\sum_n a_n$ be observed richness and $N=\sum_n n a_n$ total individuals.
+
+## Formal statement
+
+The model sets
+
+$$a_n=\frac{\alpha x^n}{n},\qquad 0<x<1,$$
+
+so $N=\alpha x/(1-x)$ and $S=-\alpha\log(1-x)$. Eliminating $x$ gives the estimating relation
+
+$$S=\alpha\log\left(1+\frac{N}{\alpha}\right).$$
+
+The fitted $\alpha$ is Fisher’s alpha.
+
+## Worked example
+
+If a sample contains $N=100$ individuals from $S=30$ species, solve $30=\alpha\log(1+100/\alpha)$. The solution is approximately $\alpha=14.5$. A second sample should only be compared through alpha if the model and sampling assumptions are credible for both.
+
+## History and attribution
+
+The 1943 paper was joint work. Corbet supplied Malayan butterfly data, Williams supplied British moth data, and Fisher developed the mathematical relation and fitted it. Calling the entire result only “Fisher’s” erases the empirical collaboration; “Fisher–Corbet–Williams log series” makes that structure visible.
+
+## Modern use
+
+Fisher’s alpha remains a biodiversity index and the log series remains a baseline species-abundance model. The apparent coexistence of many rare species—sometimes loosely called Fisher’s paradox of species abundance—is a question motivated by the pattern, not a separate formal Fisher theorem. The paper also helped establish quantitative macroecology and species-accumulation analysis.
+
+## Limits and debates
+
+Alpha is model-dependent, not a universal property of a community. Habitat heterogeneity, incomplete detection, spatial aggregation, and sampling design can change it. Other abundance models may fit better, and equal alpha values do not imply identical ecological structure.
