@@ -27,7 +27,7 @@ jobs:
         run: npm test
       - name: Build and verify static output
         run: npm run build
-      - name: Install browser for end-to-end tests
-        run: npx playwright install --with-deps chromium
+      - name: Install browsers for end-to-end tests
+        run: npx playwright install --with-deps chromium webkit
       - name: Run browser and accessibility tests
         run: npm run test:e2e

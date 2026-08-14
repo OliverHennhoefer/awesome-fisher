@@ -39,13 +39,15 @@ test('keyboard search shortcut and deep links work', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Search', level: 1 })).toBeVisible();
 });
 
-test('articles retain their content without JavaScript', async ({ browser }) => {
-  const context = await browser.newContext({ javaScriptEnabled: false });
-  const page = await context.newPage();
-  await page.goto('http://127.0.0.1:4321/awesome-fisher/contributions/fishers-exact-test/');
-  await expect(page.getByRole('heading', { name: 'Fisher’s exact test', level: 1 })).toBeVisible();
-  await expect(page.getByText('For the table [[8, 2], [1, 5]]')).toBeVisible();
-  await context.close();
+test.describe('without JavaScript', () => {
+  test.use({ javaScriptEnabled: false });
+
+  test('articles retain their content', async ({ page }) => {
+    await page.goto('./contributions/fishers-exact-test/');
+    await expect(page.getByRole('heading', { name: 'Fisher’s exact test', level: 1 })).toBeVisible();
+    await expect(page.getByRole('spinbutton', { name: 'Treatment / outcome' })).toHaveValue('8');
+    await expect(page.locator('#exact-result')).toHaveText('0.0350');
+  });
 });
 
 test('the GitHub Pages custom 404 document is available', async ({ page }) => {
