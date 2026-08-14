@@ -11,11 +11,25 @@ const featured = contributions.filter(({ data }) => data.featured).slice(0, 9);
 
 <BaseLayout>
   <div class="page-shell hero">
-    <div class="hero-copy">
-      <p class="eyebrow">Ideas, evidence, and historical context</p>
-      <h1>A field of consequences.</h1>
-      <p class="lede">A critical, accessible guide to the statistical and biological ideas associated with Ronald A. Fisher.</p>
-      <SearchPanel />
+    <div class="hero-stage">
+      <div class="hero-copy">
+        <p class="eyebrow">Ideas, evidence, and historical context</p>
+        <h1>A field of consequences.</h1>
+        <p class="lede">A critical, accessible guide to the statistical and biological ideas associated with Ronald A. Fisher.</p>
+        <SearchPanel />
+      </div>
+      <figure class="hero-portrait">
+        <div class="hero-portrait-frame">
+          <img
+            src={withBase('/images/ronald-fisher-1958.jpg')}
+            width="900"
+            height="1317"
+            alt="Ronald A. Fisher in profile, seated at a desk and using a mechanical calculator in 1958."
+            decoding="async"
+            fetchpriority="high"
+          />
+        </div>
+      </figure>
     </div>
     <nav class="hero-index" aria-label="Browse by field">
       {Object.entries(fields).map(([id, field]) => (
