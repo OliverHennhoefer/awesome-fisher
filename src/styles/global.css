@@ -31,6 +31,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
   outline: 3px solid var(--ink);
   outline-offset: 3px;
 }
+.hero .search-form input:focus-visible,
+#filter-query:focus-visible,
+#filter-field:focus-visible,
+#filter-difficulty:focus-visible {
+  outline: 0;
+  box-shadow: none;
+}
 
 img { max-width: 100%; height: auto; }
 
@@ -292,11 +299,14 @@ button:hover, .button:hover { background: var(--paper); color: var(--ink); }
 .search-page { padding-block: clamp(2.5rem, 5vw, 4.5rem); }
 .search-page .lede { margin-bottom: 0; }
 .search-panel {
+  position: relative;
+  z-index: 10;
   max-width: 860px;
   margin-top: clamp(1.5rem, 3vw, 2.25rem);
   border-block: 1px solid var(--ink);
   padding: 1rem 0 .8rem;
 }
+.search-dropdown-anchor { position: relative; z-index: 20; }
 .search-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0; align-items: end; }
 .search-form .control { min-width: 0; }
 .search-form label { margin-bottom: .15rem; }
@@ -307,11 +317,24 @@ button:hover, .button:hover { background: var(--paper); color: var(--ink); }
   font-size: 1rem;
 }
 .search-form button { min-width: 120px; height: 56px; padding-inline: 1.25rem; }
-.search-panel .search-status { margin: .65rem 0 0; line-height: 1.4; }
-.search-results:not(:empty) { margin-top: 1rem; border-top: 1px solid var(--ink); }
-.search-result { border-bottom: 1px solid var(--line); padding: 1rem 0; }
-.search-result h2 { margin: 0 0 .25rem; font-size: 1.05rem; }
-.search-result p { margin: 0; font-size: .84rem; }
+.search-panel .search-status { min-height: 1.4em; margin: .65rem 0 0; line-height: 1.4; }
+.search-results {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  z-index: 30;
+  width: 100%;
+  max-height: min(55vh, 30rem);
+  overflow-y: auto;
+  border: 1px solid var(--ink);
+  background: var(--white);
+}
+.search-results[hidden] { display: none; }
+.search-result { border-bottom: 1px solid var(--line); padding: .75rem 1rem; background: var(--white); }
+.search-result:last-child { border-bottom: 0; }
+.search-result:hover, .search-result:focus-within { background: var(--soft); }
+.search-result h2 { margin: 0; font-size: 1.05rem; }
+.search-result h2 a { text-decoration: none; }
 .search-status { font: .75rem var(--sans); color: var(--muted); }
 
 .timeline { border-left: 1px solid var(--ink); margin-left: 5rem; }

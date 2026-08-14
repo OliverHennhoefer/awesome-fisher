@@ -1,4 +1,7 @@
 ---
+import { contributionHref, getPublishedContributions } from '@/lib/content';
+import { withBase } from '@/data/site';
+
 interface Props {
   label?: string;
   autofocus?: boolean;
@@ -10,18 +13,28 @@ const {
   initialQuery = '',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const fallbackEntries = (await getPublishedContributions()).map((entry) => ({
+  title: entry.data.title,
+  aliases: entry.data.aliases,
+  summary: entry.data.summary,
+  url: withBase(contributionHref(entry)),
+}));
+const fallbackJson = JSON.stringify(fallbackEntries).replace(/</g, '\\u003c');
 ---
 
 <section class="search-panel" data-search-panel data-base={base} data-pagefind-ignore>
-  <form class="search-form" role="search">
-    <div class="control">
-      <label for="site-search">{label}</label>
-      <input id="site-search" name="q" type="search" value={initialQuery} placeholder="Try ANOVA, combined p-values, or Fisher information" autocomplete="off" autofocus={autofocus} aria-describedby="search-status" />
-    </div>
-    <button type="submit">Search</button>
-  </form>
+  <div class="search-dropdown-anchor">
+    <form class="search-form" role="search">
+      <div class="control">
+        <label for="site-search">{label}</label>
+        <input id="site-search" name="q" type="search" value={initialQuery} placeholder="e.g. ANOVA" autocomplete="off" autofocus={autofocus} aria-describedby="search-status" aria-controls="site-search-results" />
+      </div>
+      <button type="submit">Search</button>
+    </form>
+    <div id="site-search-results" class="search-results" role="region" aria-label="Search results" hidden></div>
+  </div>
   <p id="search-status" class="search-status" aria-live="polite">Titles, aliases, definitions, and full article text.</p>
-  <div class="search-results"></div>
+  <script type="application/json" data-search-fallback set:html={fallbackJson} is:inline></script>
 </section>
 
 <script is:inline>
@@ -32,8 +45,11 @@ const base = import.meta.env.BASE_URL;
     const input = root.querySelector('input[type="search"]');
     const status = root.querySelector('.search-status');
     const output = root.querySelector('.search-results');
+    const fallback = JSON.parse(root.querySelector('[data-search-fallback]').textContent);
     const base = root.dataset.base;
     let pagefind;
+    let pagefindUnavailable = false;
+    let searchSequence = 0;
 
     const escapeHtml = (value) => {
       const element = document.createElement('div');
@@ -43,32 +59,72 @@ const base = import.meta.env.BASE_URL;
 
     async function loadPagefind() {
       if (pagefind) return pagefind;
+      if (pagefindUnavailable) throw new Error('Pagefind is unavailable');
       pagefind = await import(/* @vite-ignore */ `${base}pagefind/pagefind.js`);
       await pagefind.options({ baseUrl: base });
       return pagefind;
     }
 
+    function fallbackSearch(query) {
+      const terms = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
+      const matches = fallback
+        .map((item) => {
+          const title = item.title.toLocaleLowerCase();
+          const aliases = item.aliases.join(' ').toLocaleLowerCase();
+          const summary = item.summary.toLocaleLowerCase();
+          const searchable = `${title} ${aliases} ${summary}`;
+          if (!terms.every((term) => searchable.includes(term))) return null;
+          const score = title.startsWith(terms[0]) ? 0 : title.includes(terms[0]) ? 1 : aliases.includes(terms[0]) ? 2 : 3;
+          return { ...item, score };
+        })
+        .filter(Boolean)
+        .sort((a, b) => a.score - b.score || a.title.localeCompare(b.title));
+      return { items: matches.slice(0, 8), total: matches.length };
+    }
+
+    function setOpen(open) {
+      output.hidden = !open;
+    }
+
+    function renderResults(items) {
+      output.innerHTML = items.map((item) => `
+        <article class="search-result">
+          <h2><a href="${escapeHtml(item.url)}">${escapeHtml(item.title)}</a></h2>
+        </article>
+      `).join('');
+      setOpen(items.length > 0);
+    }
+
+    function updateStatus(total, query) {
+      status.textContent = `${total} result${total === 1 ? '' : 's'} for “${query}”.`;
+    }
+
     async function search(term) {
       const query = term.trim();
+      const sequence = ++searchSequence;
       if (!query) {
         output.replaceChildren();
+        setOpen(false);
         status.textContent = 'Titles, aliases, definitions, and full article text.';
         return;
       }
-      status.textContent = 'Searching…';
+
+      const local = fallbackSearch(query);
+      renderResults(local.items);
+      updateStatus(local.total, query);
+
       try {
         const index = await loadPagefind();
         const response = await index.search(query);
         const items = await Promise.all(response.results.slice(0, 8).map((result) => result.data()));
-        status.textContent = `${response.results.length} result${response.results.length === 1 ? '' : 's'} for “${query}”.`;
-        output.innerHTML = items.map((item) => `
-          <article class="search-result">
-            <h2><a href="${item.url}">${escapeHtml(item.meta.title || item.url)}</a></h2>
-            <p>${item.excerpt}</p>
-          </article>
-        `).join('');
+        if (sequence !== searchSequence) return;
+        renderResults(items.map((item) => ({
+          title: (item.meta.title || item.url).replace(/ — The Fisher Index$/, ''),
+          url: item.url,
+        })));
+        updateStatus(response.results.length, query);
       } catch {
-        status.textContent = 'The search index is available in the production build. Browse the contribution index while developing locally.';
+        pagefindUnavailable = true;
       }
     }
 
@@ -80,6 +136,15 @@ const base = import.meta.env.BASE_URL;
     form.addEventListener('submit', (event) => {
       event.preventDefault();
       search(input.value);
+    });
+    input.addEventListener('focus', () => {
+      if (input.value.trim() && output.childElementCount) setOpen(true);
+    });
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') setOpen(false);
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (!root.contains(event.target)) setOpen(false);
     });
 
     const params = new URLSearchParams(window.location.search);

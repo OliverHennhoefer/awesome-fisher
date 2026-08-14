@@ -4,8 +4,17 @@ import { expect, test } from '@playwright/test';
 test('home exposes search and all five browsing pillars', async ({ page }) => {
   await page.goto('./');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('A field of consequences.');
-  await expect(page.getByRole('searchbox')).toBeVisible();
-  await expect(page.getByRole('navigation', { name: 'Browse by field' }).getByRole('link')).toHaveCount(5);
+  const searchbox = page.getByRole('searchbox');
+  const fieldNavigation = page.getByRole('navigation', { name: 'Browse by field' });
+  await expect(searchbox).toBeVisible();
+  await expect(fieldNavigation.getByRole('link')).toHaveCount(5);
+  const navigationTop = await fieldNavigation.evaluate((element) => element.getBoundingClientRect().top);
+  await searchbox.fill('ANOVA');
+  const results = page.getByRole('region', { name: 'Search results' });
+  await expect(results).toBeVisible();
+  await expect(results.getByRole('link', { name: /Analysis of variance/ })).toBeVisible();
+  await expect(results).toHaveCSS('position', 'absolute');
+  await expect.poll(() => fieldNavigation.evaluate((element) => element.getBoundingClientRect().top)).toBe(navigationTop);
 });
 
 test('the contribution index filters by alias and difficulty', async ({ page }) => {
