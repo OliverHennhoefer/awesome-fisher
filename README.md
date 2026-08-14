@@ -2,7 +2,7 @@
 
 A critical, accessible field guide to the statistical and biological ideas associated with Ronald A. Fisher: what they say, why they matter, who helped develop them, and where their limits lie.
 
-The production site is designed for [oliverhennhoefer.github.io/awesome-fisher/](https://oliverhennhoefer.github.io/awesome-fisher/).
+The production site is designed for [oliverhennhoefer.github.io/the-fisher-index/](https://oliverhennhoefer.github.io/the-fisher-index/).
 
 ## What is included
 
@@ -28,7 +28,7 @@ npm test
 npm run build
 ```
 
-The build validates the contribution corpus, generates the Astro site, creates a Pagefind index, and checks local links under the `/awesome-fisher/` project base path.
+The build validates the contribution corpus, generates the Astro site, creates a Pagefind index, and checks local links under the `/the-fisher-index/` project base path.
 
 ## Contributing
 

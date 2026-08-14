@@ -44,7 +44,7 @@ test('directional distribution renders its formal statement', async ({ page }) =
 test('contribution navigation works from deep links', async ({ page }) => {
   await page.goto('./contributions/sufficiency/');
   await page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Contributions' }).click();
-  await expect(page).toHaveURL(/\/awesome-fisher\/contributions\/$/);
+  await expect(page).toHaveURL(/\/the-fisher-index\/contributions\/$/);
   await expect(page.getByLabel('Title, alias, or summary')).toBeVisible();
 });
 
@@ -56,7 +56,7 @@ test('the works timeline exposes dated entries as links', async ({ page }, testI
 
   const anovaBar = page.locator('.works-timeline-bar[aria-label^="Analysis of variance,"]');
   await expect(anovaBar).toHaveCount(1);
-  await expect(anovaBar).toHaveAttribute('href', /\/awesome-fisher\/contributions\/analysis-of-variance\/$/);
+  await expect(anovaBar).toHaveAttribute('href', /\/the-fisher-index\/contributions\/analysis-of-variance\/$/);
   await anovaBar.focus();
   await expect(anovaBar).toBeFocused();
   await expect(page.getByText('Fisher consistency')).toHaveCount(0);
@@ -70,7 +70,7 @@ test('the primary navigation promotes timeline before biography', async ({ page 
   const primaryLinks = primaryNav.getByRole('link');
   await expect(primaryLinks).toHaveText(['Contributions', 'Timeline', 'Biography', 'Context']);
   await primaryNav.getByRole('link', { name: 'Biography', exact: true }).click();
-  await expect(page).toHaveURL(/\/awesome-fisher\/biography\/$/);
+  await expect(page).toHaveURL(/\/the-fisher-index\/biography\/$/);
   await expect(page.getByRole('heading', { name: 'A life across disciplines.', level: 1 })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Explore the works timeline' })).toHaveCount(0);
 });

@@ -8,4 +8,4 @@ The complete legal code is available at:
 
 https://creativecommons.org/licenses/by/4.0/legalcode
 
-Suggested attribution: “The Fisher Index contributors, licensed CC BY 4.0, https://github.com/OliverHennhoefer/awesome-fisher.”
+Suggested attribution: “The Fisher Index contributors, licensed CC BY 4.0, https://github.com/OliverHennhoefer/the-fisher-index.”

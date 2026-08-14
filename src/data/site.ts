@@ -31,7 +31,7 @@ export type FieldId = keyof typeof fields;
 export const site = {
   title: 'The Fisher Index',
   description: 'A critical, accessible field guide to the ideas associated with Ronald A. Fisher.',
-  repository: 'https://github.com/OliverHennhoefer/awesome-fisher',
+  repository: 'https://github.com/OliverHennhoefer/the-fisher-index',
   language: 'en',
   contentLicense: 'https://creativecommons.org/licenses/by/4.0/',
   subject: {

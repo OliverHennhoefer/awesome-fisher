@@ -8,7 +8,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
 const siteOrigin = process.env.SITE_ORIGIN ?? 'https://oliverhennhoefer.github.io';
-const siteBase = process.env.SITE_BASE ?? '/awesome-fisher';
+const siteBase = process.env.SITE_BASE ?? '/the-fisher-index';
 const normalizedBase = siteBase === '/' ? '/' : `/${siteBase.replace(/^\/+|\/+$/g, '')}/`;
 const contributionPrefix = `${normalizedBase}contributions/`;
 const contributionDirectory = new URL('./src/content/contributions/', import.meta.url);

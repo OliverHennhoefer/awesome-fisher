@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const dist = path.resolve('dist');
-const base = '/awesome-fisher/';
+const base = '/the-fisher-index/';
 const htmlFiles = [];
 const articleDates = new Map();
 
@@ -24,7 +24,7 @@ for (const file of htmlFiles) {
   if (!html.includes('<main')) failures.push(`${relative}: missing main landmark`);
   if ((html.match(/<h1(?:\s|>)/g) ?? []).length !== 1) failures.push(`${relative}: expected exactly one h1`);
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
-  if (!canonical?.startsWith('https://oliverhennhoefer.github.io/awesome-fisher/')) {
+  if (!canonical?.startsWith('https://oliverhennhoefer.github.io/the-fisher-index/')) {
     failures.push(`${relative}: invalid or missing canonical URL`);
   }
   const robots = html.match(/<meta name="robots" content="([^"]+)"/i)?.[1] ?? '';

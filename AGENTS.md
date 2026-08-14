@@ -2,7 +2,7 @@
 
 ## Non-negotiables
 
-- This is a static Astro site served from `/awesome-fisher/`. Pass every internal route and asset through `withBase()` from `src/data/site.ts`.
+- This is a static Astro site served from `/the-fisher-index/`. Pass every internal route and asset through `withBase()` from `src/data/site.ts`.
 - Preserve progressive enhancement: core content and a representative demo result must work without JavaScript. Keep keyboard, focus, contrast, semantic HTML, reduced motion, monochrome design, and privacy intact.
 - Never add analytics, cookies, external runtime APIs, or third-party font requests.
 - Never edit or commit generated output: `node_modules/`, `.astro/`, `dist/`, Pagefind indexes, or Playwright artifacts.
