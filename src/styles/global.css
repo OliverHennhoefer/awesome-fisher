@@ -326,7 +326,6 @@ button:hover, .button:hover { background: var(--paper); color: var(--ink); }
   display: flex;
   align-items: end;
   padding: 0 1rem .65rem;
-  border-right: 1px solid var(--ink);
   background: var(--paper);
   color: var(--muted);
   text-transform: uppercase;
@@ -341,7 +340,7 @@ button:hover, .button:hover { background: var(--paper); color: var(--ink); }
   color: var(--muted);
   transform: translateX(-50%);
 }
-.works-timeline-tick.first { transform: none; }
+.works-timeline-tick.first { z-index: 4; }
 .works-timeline-tick.last { transform: translateX(-100%); }
 .works-timeline-rows { list-style: none; margin: 0; padding: 0; max-width: none; }
 .works-timeline-row { min-height: 68px; border-bottom: 1px solid var(--line); }
@@ -355,7 +354,6 @@ button:hover, .button:hover { background: var(--paper); color: var(--ink); }
   justify-content: center;
   min-width: 0;
   padding: .65rem 1rem;
-  border-right: 1px solid var(--ink);
   background: var(--paper);
 }
 .works-timeline-entry a {
