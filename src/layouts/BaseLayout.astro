@@ -52,7 +52,7 @@ const path = Astro.url.pathname;
           <a href={withBase('/contributions/')} aria-current={path.includes('/contributions') ? 'page' : undefined}>Contributions</a>
           <a href={withBase('/timeline/')} aria-current={path.includes('/timeline') ? 'page' : undefined}>Timeline</a>
           <a href={withBase('/context/')} aria-current={path.includes('/context') ? 'page' : undefined}>Context</a>
-          <a href={withBase('/search/')} aria-current={path.includes('/search') ? 'page' : undefined}>Search <span aria-hidden="true">⌘K</span></a>
+          <a href={withBase('/search/')} aria-current={path.includes('/search') ? 'page' : undefined}>Search</a>
         </nav>
       </div>
     </header>
@@ -75,13 +75,5 @@ const path = Astro.url.pathname;
         </div>
       </div>
     </footer>
-    <script is:inline>
-      document.addEventListener('keydown', (event) => {
-        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-          event.preventDefault();
-          window.location.href = document.querySelector('a[href*="/search/"]').href;
-        }
-      });
-    </script>
   </body>
 </html>

@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 
 test('home exposes search and all five browsing pillars', async ({ page }) => {
   await page.goto('./');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('One index');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('A field of consequences.');
   await expect(page.getByRole('searchbox')).toBeVisible();
   await expect(page.getByRole('navigation', { name: 'Browse by field' }).getByRole('link')).toHaveCount(5);
 });
@@ -32,9 +32,9 @@ test('signature calculations respond to input', async ({ page }) => {
   await expect(page.locator('#exact-result')).toHaveText('0.4857');
 });
 
-test('keyboard search shortcut and deep links work', async ({ page }) => {
+test('search navigation and deep links work', async ({ page }) => {
   await page.goto('./contributions/sufficiency/');
-  await page.keyboard.press('Control+K');
+  await page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Search' }).click();
   await expect(page).toHaveURL(/\/awesome-fisher\/search\/$/);
   await expect(page.getByRole('heading', { name: 'Search', level: 1 })).toBeVisible();
 });
