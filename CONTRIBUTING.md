@@ -4,7 +4,7 @@ Thank you for helping make the record more precise and accessible. This is a cur
 
 ## Propose before drafting
 
-1. Search the site, `IDEAS.md`, and open issues for the concept and its aliases.
+1. Search the site, `src/data/idea-routes.json`, and open issues for the concept and its aliases.
 2. Open a **New contribution** issue with the proposed scope, attribution, and sources.
 3. Wait for agreement on scope before writing a long article.
 

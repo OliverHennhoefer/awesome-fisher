@@ -54,7 +54,7 @@ body:
     attributes:
       label: Contributor check
       options:
-        - label: I searched the site, IDEAS.md, and open issues for duplicates and aliases.
+        - label: I searched the site, the routed idea inventory, and open issues for duplicates and aliases.
           required: true
         - label: I have read CONTRIBUTING.md and understand the content licensing terms.
           required: true

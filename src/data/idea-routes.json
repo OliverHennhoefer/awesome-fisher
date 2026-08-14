@@ -1,0 +1,373 @@
+{
+  "behrens-fisher-problem": [
+    "Behrens–Fisher distribution",
+    "Behrens–Fisher problem",
+    "Common-mean Behrens–Fisher problem",
+    "Generalized Behrens–Fisher problem",
+    "Multivariate Behrens–Fisher problem",
+    "Nonparametric Behrens–Fisher problem"
+  ],
+  "fisher-information-and-score": [
+    "Bayesian Fisher information",
+    "Bayes–Fisher information identity",
+    "Classical Fisher information",
+    "Complete-data Fisher information",
+    "Conditional Fisher information",
+    "Empirical Fisher information",
+    "Empirical Fisher information matrix",
+    "Expected Fisher information",
+    "Expected Fisher information matrix",
+    "Fisher identity",
+    "Fisher information",
+    "Scalar Fisher information",
+    "Fisher information functional",
+    "Fisher information measure",
+    "Fisher information number",
+    "Fisher information matrix",
+    "Fisher matrix",
+    "Fisher information equality",
+    "Fisher information identity",
+    "Fisher information inequality",
+    "Fisher information loss",
+    "Observed Fisher information",
+    "Observed Fisher information matrix",
+    "Missing Fisher information",
+    "Fisher kernel",
+    "Fisher kernel method",
+    "Normalized Fisher kernel",
+    "Fisher vector",
+    "Fisher vector encoding",
+    "Improved Fisher vector",
+    "Fisher score",
+    "Fisher score function",
+    "Fisher score vector"
+  ],
+  "cornish-fisher-expansion": [
+    "Cornish–Fisher expansion",
+    "Inverse Cornish–Fisher expansion",
+    "Multivariate Cornish–Fisher expansion"
+  ],
+  "information-bounds-and-efficiency": [
+    "Cramér–Rao–Fisher bound",
+    "Cramér–Rao–Fisher inequality",
+    "Fisher efficiency",
+    "Fisher-efficient estimator"
+  ],
+  "f-distribution-and-variance-ratios": [
+    "F distribution",
+    "Central F distribution",
+    "Doubly noncentral F distribution",
+    "F ratio",
+    "F statistic",
+    "F test",
+    "Noncentral F distribution",
+    "Fisher–Snedecor distribution",
+    "Fisher–Snedecor test",
+    "Fisher’s B distribution",
+    "Fisher–Cochran theorem",
+    "Fisher’s \\(z\\)-distribution"
+  ],
+  "angular-transformation": [
+    "Fisher’s angular transformation",
+    "Fisher’s arcsine transformation",
+    "Fisher’s arcsine square-root transformation"
+  ],
+  "average-effect-and-excess": [
+    "Fisher’s average effect",
+    "Fisher’s average effect of gene substitution",
+    "Fisher’s average excess",
+    "Fisherian epistasis",
+    "Fisherian decomposition of genetic variance",
+    "Fisherian additive genetic variance"
+  ],
+  "directional-distributions": [
+    "Fisher–Bingham distribution",
+    "Fisher–Bingham five-parameter distribution",
+    "Fisher’s spherical normal distribution",
+    "Fisher distribution on the sphere",
+    "Fisher directional distribution",
+    "Truncated Fisher distribution",
+    "von Mises–Fisher distribution",
+    "Fisher–von Mises distribution",
+    "Matrix Fisher distribution",
+    "Matrix von Mises–Fisher distribution"
+  ],
+  "fisher-consistency": [
+    "Fisher consistency",
+    "Fisher-consistent estimating equation",
+    "Fisher-consistent estimator",
+    "Fisher-consistent functional",
+    "Fisher-consistent loss",
+    "Fisher-consistent scoring rule"
+  ],
+  "discriminant-analysis-and-iris": [
+    "Fisher’s criterion",
+    "Generalized Fisher criterion",
+    "Kernel Fisher criterion",
+    "Fisher discriminant analysis",
+    "Fisher discriminant function",
+    "Fisher discriminant ratio",
+    "Fisher’s linear discriminant",
+    "Fisher linear discriminant analysis",
+    "Generalized Fisher discriminant analysis",
+    "Kernel Fisher discriminant analysis",
+    "Local Fisher discriminant analysis",
+    "Regularized Fisher discriminant analysis",
+    "Sparse Fisher discriminant analysis",
+    "Fisherface algorithm",
+    "Fisherfaces",
+    "Fisher–Hsu–Roy distribution",
+    "Fisher’s Iris data set",
+    "Fisher–Anderson Iris data set",
+    "Fisher linear score space",
+    "Fisher score for feature selection",
+    "Generalized Fisher score"
+  ],
+  "fisher-rao-information-geometry": [
+    "Fisher divergence",
+    "Fisher information distance",
+    "Relative Fisher information",
+    "Fisher information geometry",
+    "Fisher information metric",
+    "Fisher metric",
+    "Fisher–Rao metric",
+    "Fisher–Rao distance",
+    "Fisher–Rao geometry",
+    "Fisher–Rao norm",
+    "Quantum Fisher information",
+    "Quantum Fisher information matrix"
+  ],
+  "fisher-kpp-wave": [
+    "Fisher’s equation",
+    "Fisher–Kolmogorov equation",
+    "Fisher–Kolmogorov–Petrovsky–Piskunov equation",
+    "Fisher–KPP equation",
+    "Fisher wave",
+    "Fisher wave of advance"
+  ],
+  "fishers-exact-test": [
+    "Fisher’s exact chi-square test",
+    "Fisher’s exact conditional test",
+    "Fisher’s exact probability test",
+    "Fisher’s exact test",
+    "One-sided Fisher’s exact test",
+    "Two-sided Fisher’s exact test",
+    "Mid-\\(p\\) Fisher exact test",
+    "Fisher–Freeman–Halton exact test",
+    "Fisher–Irwin exact test",
+    "Fisher–Yates exact test"
+  ],
+  "sufficiency": [
+    "Fisher factorization criterion",
+    "Fisher factorization theorem",
+    "Fisher–Neyman factorization criterion",
+    "Fisher–Neyman factorization theorem"
+  ],
+  "fiducial-inference": [
+    "Fisher’s fiducial argument",
+    "Fisher’s fiducial distribution",
+    "Fisher’s fiducial inference",
+    "Fisher’s fiducial interval",
+    "Fisher’s fiducial limits",
+    "Fisher’s fiducial probability",
+    "Fisherian fiducialism"
+  ],
+  "fundamental-theorem-natural-selection": [
+    "Fisher’s fundamental theorem of natural selection",
+    "Fisher’s fundamental theorem",
+    "Fisher’s theorem of natural selection",
+    "Fisher’s paradox of fitness heritability"
+  ],
+  "fishers-g-test": [
+    "Fisher’s \\(g\\)-statistic",
+    "Fisher’s \\(g\\)-test",
+    "Fisher’s exact \\(g\\)-test",
+    "Fisher’s test of significance in harmonic analysis",
+    "Fisher’s test for hidden periodicity"
+  ],
+  "fishers-geometric-model": [
+    "Fisher’s geometric model",
+    "Fisher’s geometric model of adaptation",
+    "Fisher’s geometric model of the fitness landscape",
+    "Fisher’s microscope model",
+    "Fisher–Orr model",
+    "Fisher model of adaptation"
+  ],
+  "infinitesimal-model": [
+    "Fisher’s infinitesimal model",
+    "Fisher’s polygenic model"
+  ],
+  "fisher-muller-hypothesis": [
+    "Fisher–Muller argument",
+    "Fisher–Muller hypothesis",
+    "Fisher–Muller model",
+    "Fisher–Muller effect",
+    "Fisher–Muller advantage of sex"
+  ],
+  "k-statistics": [
+    "Fisher’s \\(k\\)-statistics",
+    "Univariate Fisher \\(k\\)-statistics",
+    "Multivariate Fisher \\(k\\)-statistics"
+  ],
+  "fishers-least-significant-difference": [
+    "Fisher’s least significant difference",
+    "Fisher’s least significant difference test",
+    "Fisher’s LSD procedure",
+    "Fisher’s protected LSD",
+    "Fisher’s unprotected LSD",
+    "Fisher–Hayter procedure"
+  ],
+  "likelihood-and-maximum-likelihood": [
+    "Fisher likelihood",
+    "Fisher’s likelihood method",
+    "Fisher’s method of maximum likelihood",
+    "Fisher maximum-likelihood estimator",
+    "Fisherian likelihood inference",
+    "Fisher’s theory of statistical estimation"
+  ],
+  "log-series-and-fishers-alpha": [
+    "Fisher’s logarithmic series distribution",
+    "Fisher log-series distribution",
+    "Fisher log-series model",
+    "Fisher’s species-abundance model",
+    "Fisher–Corbet–Williams log-series model",
+    "Fisher’s alpha",
+    "Fisher’s alpha diversity index",
+    "Fisher’s paradox of species abundance"
+  ],
+  "fishers-method": [
+    "Fisher’s method",
+    "Fisher’s combined probability test",
+    "Fisher’s combined \\(p\\)-value method",
+    "Fisher’s inverse chi-square method",
+    "Fisher’s omnibus test",
+    "Fisher’s product method",
+    "Fisher combination statistic",
+    "Generalized Fisher’s method",
+    "Weighted Fisher method"
+  ],
+  "noncentral-hypergeometric-distribution": [
+    "Fisher’s noncentral hypergeometric distribution",
+    "Fisher noncentral hypergeometric distribution",
+    "Multivariate Fisher noncentral hypergeometric distribution",
+    "Fisher noncentral hypergeometric urn model"
+  ],
+  "ancillarity-and-conditionality": [
+    "Fisher’s problem of the Nile",
+    "Fisher’s Nile example",
+    "Neyman–Fisher paradox",
+    "Fisher’s principle of ancillarity",
+    "Fisher’s conditionality principle"
+  ],
+  "randomization-replication-and-blocking": [
+    "Fisher–Pitman permutation test",
+    "Fisher–Pitman test",
+    "Fisher–Pitman null hypothesis",
+    "Fisher’s principle of randomization",
+    "Fisher’s principle of replication",
+    "Fisher’s principle of local control",
+    "Fisher’s three principles of experimental design",
+    "Fisherian experimental design",
+    "Fisherian randomized-block design",
+    "Fisher randomization distribution",
+    "Fisher randomization inference",
+    "Fisher randomization test",
+    "Fisher exact randomization test",
+    "Fisher permutation test",
+    "Fisher’s sharp null hypothesis",
+    "Fisher null hypothesis",
+    "Fisher’s randomization hypothesis",
+    "Lady tasting tea experiment",
+    "Lady tasting tea test"
+  ],
+  "fishers-principle": [
+    "Fisher’s principle",
+    "Fisher’s sex-ratio principle",
+    "Fisherian sex-ratio theory",
+    "Fisher’s equal-investment principle",
+    "Fisher’s equal-allocation principle",
+    "Fisher condition",
+    "Fisherian sex ratio",
+    "Non-Fisherian sex ratio"
+  ],
+  "factorial-designs-and-confounding": [
+    "Fisherian factorial design"
+  ],
+  "fisher-race-blood-groups": [
+    "Fisher–Race blood-group system",
+    "Fisher–Race theory",
+    "Fisher–Race nomenclature"
+  ],
+  "reproductive-value": [
+    "Fisher’s reproductive value",
+    "Fisher reproductive-value weighting"
+  ],
+  "fisherian-runaway-selection": [
+    "Fisherian runaway",
+    "Fisher’s runaway process",
+    "Fisherian runaway selection",
+    "Fisher runaway model",
+    "Fisherian model of sexual selection"
+  ],
+  "fisher-scoring": [
+    "Fisher scoring",
+    "Fisher scoring algorithm",
+    "Fisher scoring method",
+    "Fisher scoring iteration"
+  ],
+  "evolution-of-dominance": [
+    "Fisher’s theory of dominance",
+    "Fisher’s modifier theory of dominance",
+    "Fisher’s theory of the evolution of dominance"
+  ],
+  "significance-tests-and-p-values": [
+    "Fisherian significance testing",
+    "Fisherian significance test",
+    "Fisherian \\(p\\)-value",
+    "Fisherian null-hypothesis significance testing",
+    "Fisherian inference"
+  ],
+  "fisher-tippett-extreme-values": [
+    "Fisher–Tippett distribution",
+    "Fisher–Tippett type I distribution",
+    "Fisher–Tippett type II distribution",
+    "Fisher–Tippett type III distribution",
+    "Fisher–Tippett theorem",
+    "Fisher–Tippett–Gnedenko theorem"
+  ],
+  "fisher-z-transformation": [
+    "Fisher transformation",
+    "Fisher \\(r\\)-to-\\(z\\) transformation",
+    "Fisher logarithmic transformation of the correlation coefficient",
+    "Inverse Fisher transformation",
+    "Fisher \\(z\\)-test for a correlation",
+    "Fisher \\(z\\)-test for comparing correlations",
+    "Fisher’s exact sampling distribution of the correlation coefficient"
+  ],
+  "fisher-yates-shuffle": [
+    "Fisher–Yates shuffle",
+    "Original Fisher–Yates shuffle",
+    "Modern Fisher–Yates shuffle",
+    "Inside-out Fisher–Yates shuffle",
+    "Fisher–Yates randomization algorithm"
+  ],
+  "fisher-yates-normal-scores": [
+    "Fisher–Yates normal scores",
+    "Fisher–Yates normal-score transformation"
+  ],
+  "wright-fisher-model": [
+    "Wright–Fisher model",
+    "Fisher–Wright model",
+    "Wright–Fisher population model",
+    "Wright–Fisher sampling model",
+    "Wright–Fisher process",
+    "Wright–Fisher chain",
+    "Wright–Fisher diffusion",
+    "Neutral Wright–Fisher model",
+    "Wright–Fisher model with selection",
+    "Wright–Fisher model with mutation",
+    "Multiallelic Wright–Fisher model",
+    "Multilocus Wright–Fisher model",
+    "Structured Wright–Fisher model"
+  ]
+}
