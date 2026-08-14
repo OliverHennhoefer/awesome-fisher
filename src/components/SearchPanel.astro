@@ -5,7 +5,7 @@ interface Props {
   initialQuery?: string;
 }
 const {
-  label = 'Search 19 reviewed contributions',
+  label = 'Search the index',
   autofocus = false,
   initialQuery = '',
 } = Astro.props;
@@ -16,11 +16,11 @@ const base = import.meta.env.BASE_URL;
   <form class="search-form" role="search">
     <div class="control">
       <label for="site-search">{label}</label>
-      <input id="site-search" name="q" type="search" value={initialQuery} placeholder="Try “combined p-values” or “ANOVA”" autocomplete="off" autofocus={autofocus} />
+      <input id="site-search" name="q" type="search" value={initialQuery} placeholder="Try ANOVA, combined p-values, or Fisher information" autocomplete="off" autofocus={autofocus} aria-describedby="search-status" />
     </div>
     <button type="submit">Search</button>
   </form>
-  <p class="search-status" aria-live="polite">Search titles, aliases, definitions, and article text.</p>
+  <p id="search-status" class="search-status" aria-live="polite">Titles, aliases, definitions, and full article text.</p>
   <div class="search-results"></div>
 </section>
 
@@ -52,7 +52,7 @@ const base = import.meta.env.BASE_URL;
       const query = term.trim();
       if (!query) {
         output.replaceChildren();
-        status.textContent = 'Search titles, aliases, definitions, and article text.';
+        status.textContent = 'Titles, aliases, definitions, and full article text.';
         return;
       }
       status.textContent = 'Searching…';
