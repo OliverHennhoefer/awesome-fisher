@@ -33,6 +33,14 @@ test('signature calculations respond to input', async ({ page }) => {
   await expect(page.locator('#exact-result')).toHaveText('0.4857');
 });
 
+test('directional distribution renders its formal statement', async ({ page }) => {
+  await page.goto('./contributions/directional-distributions/');
+  await expect(page.getByRole('heading', { name: 'Formal statement', level: 2 })).toBeVisible();
+  await expect(page.locator('.katex-display')).toHaveCount(1);
+  await expect(page.locator('.katex-error')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Worked example', level: 2 })).toBeVisible();
+});
+
 test('search navigation and deep links work', async ({ page }) => {
   await page.goto('./contributions/sufficiency/');
   await page.getByRole('navigation', { name: 'Primary navigation' }).getByRole('link', { name: 'Search' }).click();
