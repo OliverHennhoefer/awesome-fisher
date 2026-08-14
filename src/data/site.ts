@@ -32,6 +32,18 @@ export const site = {
   title: 'The Fisher Index',
   description: 'A critical, accessible field guide to the ideas associated with Ronald A. Fisher.',
   repository: 'https://github.com/OliverHennhoefer/awesome-fisher',
+  language: 'en',
+  contentLicense: 'https://creativecommons.org/licenses/by/4.0/',
+  subject: {
+    name: 'Ronald Aylmer Fisher',
+    alternateNames: ['Ronald Fisher', 'R. A. Fisher', 'Sir Ronald Aylmer Fisher'],
+    birthDate: '1890-02-17',
+    deathDate: '1962-07-29',
+    sameAs: [
+      'https://www.wikidata.org/wiki/Q216723',
+      'https://en.wikipedia.org/wiki/Ronald_Fisher',
+    ],
+  },
 };
 
 export function withBase(path = '/') {

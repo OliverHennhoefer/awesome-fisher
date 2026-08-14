@@ -4,6 +4,7 @@ import path from 'node:path';
 const dist = path.resolve('dist');
 const base = '/awesome-fisher/';
 const htmlFiles = [];
+const articleDates = new Map();
 
 function walk(directory) {
   for (const item of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -25,6 +26,35 @@ for (const file of htmlFiles) {
   const canonical = html.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
   if (!canonical?.startsWith('https://oliverhennhoefer.github.io/awesome-fisher/')) {
     failures.push(`${relative}: invalid or missing canonical URL`);
+  }
+  const robots = html.match(/<meta name="robots" content="([^"]+)"/i)?.[1] ?? '';
+  if (relative === '404.html') {
+    if (!robots.includes('noindex')) failures.push(`${relative}: missing noindex directive`);
+  } else if (!robots.startsWith('index,')) {
+    failures.push(`${relative}: missing index directive`);
+  }
+  const structuredData = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/i)?.[1];
+  let graph = [];
+  if (!structuredData) {
+    failures.push(`${relative}: missing JSON-LD graph`);
+  } else {
+    try {
+      const parsed = JSON.parse(structuredData);
+      graph = Array.isArray(parsed['@graph']) ? parsed['@graph'] : [];
+      for (const type of ['Person', 'WebSite', 'WebPage']) {
+        if (!graph.some((node) => node['@type'] === type)) failures.push(`${relative}: JSON-LD graph is missing ${type}`);
+      }
+    } catch {
+      failures.push(`${relative}: invalid JSON-LD`);
+    }
+  }
+  const normalizedRelative = relative.replaceAll('\\', '/');
+  if (/^contributions\/[^/]+\/index\.html$/.test(normalizedRelative)) {
+    const article = graph.find((node) => node['@type'] === 'Article');
+    const breadcrumb = graph.find((node) => node['@type'] === 'BreadcrumbList');
+    if (!article?.dateModified) failures.push(`${relative}: article JSON-LD is missing dateModified`);
+    else if (canonical) articleDates.set(canonical, article.dateModified);
+    if (breadcrumb?.itemListElement?.length !== 3) failures.push(`${relative}: article JSON-LD has an invalid breadcrumb trail`);
   }
   const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
   const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
@@ -53,6 +83,18 @@ for (const file of htmlFiles) {
 
 if (!fs.existsSync(path.join(dist, 'pagefind', 'pagefind.js'))) {
   failures.push('Pagefind browser bundle is missing.');
+}
+
+const sitemapPath = path.join(dist, 'sitemap-0.xml');
+if (!fs.existsSync(sitemapPath)) {
+  failures.push('Sitemap is missing.');
+} else {
+  const sitemap = fs.readFileSync(sitemapPath, 'utf8');
+  for (const [url, dateModified] of articleDates) {
+    if (!sitemap.includes(`<loc>${url}</loc><lastmod>${dateModified}</lastmod>`)) {
+      failures.push(`Sitemap is missing the review date for ${url}`);
+    }
+  }
 }
 
 if (failures.length) {

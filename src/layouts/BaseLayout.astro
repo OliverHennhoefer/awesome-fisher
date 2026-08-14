@@ -12,16 +12,101 @@ interface Props {
   title?: string;
   description?: string;
   pagefind?: boolean;
+  robots?: string;
+  article?: {
+    modifiedAt: Date;
+    sections: string[];
+    keywords: string[];
+    authors: string[];
+    citations: string[];
+  };
+  breadcrumbs?: Array<{ name: string; path: string }>;
 }
 
 const {
   title,
   description = site.description,
   pagefind = false,
+  robots = 'index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1',
+  article,
+  breadcrumbs = [],
 } = Astro.props;
 const pageTitle = title ? `${title} — ${site.title}` : site.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const home = new URL(withBase('/'), Astro.site);
 const path = Astro.url.pathname;
+const websiteId = `${home.href}#website`;
+const personId = `${home.href}#ronald-fisher`;
+const webpageId = `${canonical.href}#webpage`;
+const articleId = `${canonical.href}#article`;
+const graph: Record<string, unknown>[] = [
+  {
+    '@type': 'Person',
+    '@id': personId,
+    name: site.subject.name,
+    alternateName: site.subject.alternateNames,
+    birthDate: site.subject.birthDate,
+    deathDate: site.subject.deathDate,
+    sameAs: site.subject.sameAs,
+  },
+  {
+    '@type': 'WebSite',
+    '@id': websiteId,
+    url: home.href,
+    name: site.title,
+    description: site.description,
+    inLanguage: site.language,
+    about: { '@id': personId },
+    license: site.contentLicense,
+    isAccessibleForFree: true,
+  },
+  {
+    '@type': 'WebPage',
+    '@id': webpageId,
+    url: canonical.href,
+    name: pageTitle,
+    description,
+    inLanguage: site.language,
+    isPartOf: { '@id': websiteId },
+    about: { '@id': personId },
+    ...(article ? { mainEntity: { '@id': articleId } } : {}),
+  },
+];
+
+if (article) {
+  graph.push({
+    '@type': 'Article',
+    '@id': articleId,
+    url: canonical.href,
+    mainEntityOfPage: { '@id': webpageId },
+    headline: title,
+    description,
+    dateModified: article.modifiedAt.toISOString(),
+    inLanguage: site.language,
+    isAccessibleForFree: true,
+    license: site.contentLicense,
+    about: { '@id': personId },
+    articleSection: article.sections,
+    keywords: article.keywords,
+    author: article.authors.map((name) => ({ '@type': 'Person', name })),
+    citation: article.citations,
+  });
+}
+
+if (breadcrumbs.length >= 2) {
+  graph.push({
+    '@type': 'BreadcrumbList',
+    '@id': `${canonical.href}#breadcrumb`,
+    itemListElement: breadcrumbs.map((breadcrumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: breadcrumb.name,
+      item: new URL(withBase(breadcrumb.path), Astro.site).href,
+    })),
+  });
+}
+
+const structuredData = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
@@ -30,14 +115,24 @@ const path = Astro.url.pathname;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
     <meta name="theme-color" content="#f8f8f5" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonical} />
-    <meta property="og:type" content="website" />
+    <link rel="license" href={site.contentLicense} />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:site_name" content={site.title} />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    {article && <meta property="article:modified_time" content={article.modifiedAt.toISOString()} />}
+    {article?.sections.map((section) => <meta property="article:section" content={section} />)}
+    {article?.keywords.map((keyword) => <meta property="article:tag" content={keyword} />)}
+    <script type="application/ld+json" is:inline set:html={structuredData}></script>
     <title>{pageTitle}</title>
     {pagefind && <meta data-pagefind-meta="title" content={pageTitle} />}
   </head>
