@@ -1,0 +1,57 @@
+---
+title: Fisher’s directional distribution
+slug: directional-distributions
+summary: Fisher’s spherical distribution models directions concentrated symmetrically around a mean direction and anchors modern directional statistics.
+aliases: [Fisher distribution on the sphere, Fisher directional distribution, Fisher spherical normal distribution, spherical Fisher distribution, von Mises–Fisher distribution, Fisher–von Mises distribution, matrix Fisher distribution, matrix von Mises–Fisher distribution, truncated Fisher distribution, Fisher–Bingham distribution, Fisher–Bingham five-parameter distribution, Kent distribution]
+fields: [multivariate-methods]
+kind: model
+period: 1953 and later
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher introduced the rotationally symmetric distribution on the sphere; von Mises, Bingham, Kent, and others supplied related or later generalizations.
+collaborators: [Richard von Mises, Christopher Bingham, John T. Kent]
+prerequisites: [Unit sphere, Vector inner products, Probability density]
+related: [discriminant-analysis-and-iris, likelihood-and-maximum-likelihood]
+references: [fisher-1953-sphere, mardia-jupp-2000]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Angles and directions wrap around: north and just west of north are close, although ordinary numeric coordinates can make them look far apart. Fisher supplied a probability model that respects spherical geometry.
+
+## Intuition
+
+The distribution is the spherical analogue of an isotropic normal cloud. Probability is highest at a mean direction and declines equally in every tangent direction. A concentration parameter controls whether observations are nearly uniform or tightly clustered.
+
+## Prerequisites
+
+Let $x$ and $\mu$ be unit vectors in $\mathbb R^p$, with $\mu$ the mean direction. Their inner product $\mu^\top x$ is the cosine of the angular separation.
+
+## Formal statement
+
+The von Mises–Fisher family has density
+
+$$f(x\mid\mu,\kappa)=C_p(\kappa)\exp(\kappa\mu^\top x),
+\qquad \|x\|=\|\mu\|=1,$$
+
+where $\kappa\ge0$ controls concentration. Fisher’s 1953 spherical case is $p=3$. At $\kappa=0$ the distribution is uniform; larger $\kappa$ concentrates mass around $\mu$.
+
+## Worked example
+
+For two directions separated by $30^\circ$, $\mu^\top x=\cos30^\circ\approx0.866$. With $\kappa=5$, their unnormalized density factor is $e^{4.33}$; a direction at $90^\circ$ has factor $e^0=1$.
+
+## History and attribution
+
+Fisher derived the spherical model for geological orientation data in 1953. The circular von Mises distribution preceded it, so the dimension-general family is fairly called von Mises–Fisher. Bingham’s axial model, Kent’s five-parameter distribution, Fisher–Bingham combinations, truncated variants, and matrix Fisher distributions are later constructions and deserve their own authorship.
+
+## Modern use
+
+Directional models are used in geology, palaeomagnetism, meteorology, protein structure, robotics, computer vision, and embeddings normalized to a sphere. Matrix Fisher models describe random rotations rather than ordinary directional vectors.
+
+## Limits and debates
+
+Rotational symmetry is restrictive: elliptical, axial, multimodal, or truncated data need richer models. The arithmetic mean of angles is generally wrong, and concentration estimates can be unstable for small or nearly uniform samples. “Fisher distribution” is ambiguous outside directional context.

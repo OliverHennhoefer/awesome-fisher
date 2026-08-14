@@ -1,0 +1,57 @@
+---
+title: The Behrens–Fisher problem
+slug: behrens-fisher-problem
+summary: The Behrens–Fisher problem asks how to compare two normal means when both variances are unknown and need not be equal.
+aliases: [Behrens–Fisher distribution, Fisher–Behrens problem, common-mean Behrens–Fisher problem, generalized Behrens–Fisher problem, multivariate Behrens–Fisher problem, nonparametric Behrens–Fisher problem]
+fields: [statistical-inference]
+kind: method
+period: 1929–1939
+difficulty: advanced
+attribution:
+  status: materially-advanced
+  note: Walter-Ulrich Behrens posed the unequal-variance problem; Fisher supplied a prominent fiducial solution whose calibration remains disputed.
+collaborators: [Walter-Ulrich Behrens]
+prerequisites: [Normal distribution, Student t distribution, Sampling distributions]
+related: [fiducial-inference, significance-tests-and-p-values, likelihood-and-maximum-likelihood]
+references: [fisher-1939-behrens, lehmann-2011, cox-2006]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+The familiar pooled two-sample $t$ test assumes equal population variances. When that assumption is removed, the standardized difference of sample means no longer has a simple Student $t$ distribution. This apparently modest change exposed deep disagreements about what a confidence statement should mean.
+
+## Intuition
+
+Each sample supplies both a mean and a noisy estimate of its own variance. The uncertainty in the denominator therefore comes from two independently estimated scales, usually with different degrees of freedom. There is no single pooled variance that absorbs both sources without an extra assumption.
+
+## Prerequisites
+
+Suppose independent samples of sizes $n_1$ and $n_2$ come from normal populations with means $\mu_1,\mu_2$ and unknown variances $\sigma_1^2,\sigma_2^2$. The target is typically $\delta=\mu_1-\mu_2$.
+
+## Formal statement
+
+The natural standardized difference is
+
+$$T=\frac{\bar X_1-\bar X_2-\delta}
+{\sqrt{S_1^2/n_1+S_2^2/n_2}}.$$
+
+Unlike the equal-variance statistic, its null distribution depends on the nuisance ratio $\sigma_1^2/\sigma_2^2$. Fisher’s fiducial construction produced the historical Behrens–Fisher distribution; Welch’s later approximation instead replaces the denominator’s degrees of freedom by a data-dependent value.
+
+## Worked example
+
+Take $n_1=10,n_2=20$, sample means $12$ and $10$, and sample standard deviations $4$ and $2$. The estimated standard error is $\sqrt{16/10+4/20}=\sqrt{1.8}\approx1.342$, so $T\approx1.49$. Treating both samples as if they shared one variance would change the standard error and answer a different problem.
+
+## History and attribution
+
+Walter-Ulrich Behrens formulated the problem in 1929. Fisher developed a fiducial solution and defended it in 1939, so “Behrens–Fisher” is a genuine joint historical label rather than evidence that Fisher originated the question. The later Welch–Satterthwaite test is not Fisher’s fiducial procedure.
+
+## Modern use
+
+Welch’s test is the standard frequentist default for two independent means with unequal variances. Exact, generalized, Bayesian, multivariate, common-mean, and nonparametric versions are active extensions of the same nuisance-parameter structure.
+
+## Limits and debates
+
+Fisher’s fiducial intervals do not have uniform repeated-sampling coverage over all variance ratios. “The Behrens–Fisher solution” is therefore ambiguous: software and papers may mean Fisher’s fiducial distribution, Welch’s approximation, a generalized pivotal method, or a Bayesian analysis.

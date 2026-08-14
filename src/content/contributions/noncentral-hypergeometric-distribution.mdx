@@ -1,0 +1,58 @@
+---
+title: Fisher’s noncentral hypergeometric distribution
+slug: noncentral-hypergeometric-distribution
+summary: Fisher’s noncentral hypergeometric distribution describes a conditional count when two independent binomials have unequal odds and a fixed total.
+aliases: [Fisher noncentral hypergeometric distribution, Fisher’s noncentral hypergeometric distribution, multivariate Fisher noncentral hypergeometric distribution, Fisher noncentral hypergeometric urn model, extended hypergeometric distribution]
+fields: [statistical-inference, experimental-design]
+kind: model
+period: 1935 and later naming
+difficulty: advanced
+attribution:
+  status: associated
+  note: Fisher used the conditional unequal-odds model in experimental inference; later authors distinguished and named it against Wallenius’s urn distribution.
+collaborators: []
+prerequisites: [Hypergeometric distribution, Odds ratio, Conditional probability]
+related: [fishers-exact-test, randomization-replication-and-blocking]
+references: [fisher-1935-design, fog-2008]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+The ordinary hypergeometric distribution assumes equal selection odds. Fisher’s noncentral version introduces an odds parameter while retaining fixed margins, making it the alternative distribution naturally paired with conditional tests of a $2\times2$ table.
+
+## Intuition
+
+Imagine two groups producing successes independently but with different odds. After conditioning on the total number of successes, the only random quantity is how many landed in the first group. Values favoring that group receive exponentially greater weight when its odds are higher.
+
+## Prerequisites
+
+Let group sizes be $m_1,m_2$, let $X$ be the first group’s success count, and condition on $X+Y=n$. Write $\omega$ for the ratio of success odds in the two groups.
+
+## Formal statement
+
+On feasible integers $x$, the probability mass is
+
+$$P(X=x\mid X+Y=n)=
+\frac{{m_1\choose x}{m_2\choose n-x}\omega^x}
+{\sum_u {m_1\choose u}{m_2\choose n-u}\omega^u}.$$
+
+At $\omega=1$ this reduces to the central hypergeometric distribution used by Fisher’s exact test.
+
+## Worked example
+
+With $m_1=m_2=2$, $n=2$, and $\omega=2$, the unnormalized weights for $x=0,1,2$ are $1,8,4$. After division by $13$, the probabilities are $1/13,8/13,4/13$.
+
+## History and attribution
+
+Fisher used this conditional model in *The Design of Experiments*. The explicit eponym and its consistent separation from Wallenius’s distribution came later. Wallenius’s noncentral hypergeometric law describes sequential biased sampling without replacement; it is not merely another parameterization of Fisher’s conditional-binomial law.
+
+## Modern use
+
+The distribution supports exact confidence intervals for odds ratios, biased sampling models, contingency-table power calculations, conditional logistic methods, and multivariate count extensions.
+
+## Limits and debates
+
+The two noncentral hypergeometric families are frequently confused in software and prose. Their data-generating mechanisms and probabilities differ. Computation can also be delicate for large counts or extreme odds, requiring stable recurrence or specialized sampling algorithms.

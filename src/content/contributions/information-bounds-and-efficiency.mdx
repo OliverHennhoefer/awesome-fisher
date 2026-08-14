@@ -1,0 +1,56 @@
+---
+title: Information bounds and efficiency
+slug: information-bounds-and-efficiency
+summary: Information bounds connect Fisher information to the smallest variance an unbiased regular estimator can attain and define a benchmark for efficiency.
+aliases: [Fisher efficiency, Fisherian efficiency, Fisher-efficient estimator, Cramér–Rao–Fisher bound, Cramér–Rao–Fisher inequality, Fréchet–Cramér–Rao–Fisher inequality]
+fields: [statistical-inference]
+kind: principle
+period: 1922–1940s
+difficulty: advanced
+attribution:
+  status: associated
+  note: Fisher introduced information and efficiency; Fréchet, Cramér, and Rao established forms of the lower-bound theorem now attached to several names.
+collaborators: [Maurice Fréchet, Harald Cramér, C. R. Rao]
+prerequisites: [Fisher information, Unbiased estimation, Calculus]
+related: [fisher-information-and-score, likelihood-and-maximum-likelihood, fisher-consistency, fisher-rao-information-geometry]
+references: [fisher-1925-estimation, rao-1945, hald-1998, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+An estimator’s variance cannot be made arbitrarily small without changing the model or accepting other costs. The information bound gives a model-based floor, and efficiency compares an estimator with that benchmark.
+
+## Intuition
+
+If the data distribution changes sharply when the parameter moves, the score carries a strong signal about that move. An unbiased estimator must respond to the same signal. Cauchy–Schwarz then limits how little the estimator can fluctuate.
+
+## Prerequisites
+
+Assume a regular one-parameter model with score $U(\theta)$ and information $I(\theta)$, and an estimator $T$ with $\mathbb E_\theta T=\theta$. Differentiation under the integral must be valid.
+
+## Formal statement
+
+The scalar Cramér–Rao inequality is
+
+$$\operatorname{Var}_\theta(T)\geq \frac{1}{I(\theta)}.$$
+
+For $n$ independent observations, $I_n=nI_1$. A regular estimator attaining the appropriate bound is efficient; asymptotic efficiency compares its limiting variance with $I(\theta)^{-1}$.
+
+## Worked example
+
+For $n$ Bernoulli observations, $I_n(p)=n/[p(1-p)]$. The bound is therefore $p(1-p)/n$. The sample proportion has exactly this variance and is efficient for $p$ under the regular interior model.
+
+## History and attribution
+
+Fisher made information and efficiency central to estimation in the 1920s. The inequality itself has independent and differently scoped antecedents in work by Fréchet and Cramér, while Rao’s 1945 paper gave a fundamental formulation and connected information to geometry. Extended labels containing all four names record a lineage, not a universally agreed priority order.
+
+## Modern use
+
+Information bounds benchmark estimators, guide experimental design, quantify asymptotic standard errors, and motivate semiparametric efficiency theory. Generalizations cover vector parameters, nuisance parameters, biased estimators, Bayesian risks, and quantum measurement.
+
+## Limits and debates
+
+The elementary bound may be loose or inapplicable at boundaries, with changing support, nonidentifiability, bias, or irregular models. Attaining a model-based variance floor is not the same as robustness: an efficient estimator can be highly sensitive to misspecification.

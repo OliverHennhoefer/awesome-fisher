@@ -1,0 +1,57 @@
+---
+title: The F distribution and variance ratios
+slug: f-distribution-and-variance-ratios
+summary: The F distribution gives the null law of a ratio of independent variance estimates and underpins analysis of variance, regression, and model comparisons.
+aliases: [F distribution, Fisher F distribution, Fisher–Snedecor distribution, variance-ratio distribution, F ratio, F statistic, F test, Fisher–Snedecor test, central F distribution, noncentral F distribution, doubly noncentral F distribution, Fisher z distribution, Fisher B distribution, Fisher–Cochran theorem]
+fields: [statistical-inference, experimental-design]
+kind: concept
+period: 1924–1930s
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher derived the variance-ratio distribution; George W. Snedecor later named it F and helped establish its tabular form.
+collaborators: [George W. Snedecor]
+prerequisites: [Chi-square distribution, Variance, Degrees of freedom]
+related: [analysis-of-variance, factorial-designs-and-confounding, significance-tests-and-p-values]
+references: [fisher-1924-distribution, hald-1998, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Many statistical questions compare a variation explained by a model with unexplained variation. Turning that comparison into a ratio removes the common variance scale, and the F distribution supplies a reference law for judging whether the ratio is unusually large.
+
+## Intuition
+
+Two independent variance estimates fluctuate even when they estimate the same quantity. Their ratio should hover near one, but its right tail is asymmetric because a small denominator can make the ratio very large. Degrees of freedom determine how variable each estimate is.
+
+## Prerequisites
+
+Let $U\sim\chi^2_{d_1}$ and $V\sim\chi^2_{d_2}$ be independent. The chi-square variables often arise as residual sums of squares divided by a common normal-error variance.
+
+## Formal statement
+
+The scaled ratio
+
+$$F=\frac{U/d_1}{V/d_2}$$
+
+has the central $F_{d_1,d_2}$ distribution. Under alternatives, a noncentral chi-square numerator produces a noncentral F distribution; allowing both components to be noncentral gives a later doubly noncentral extension. Fisher’s earlier $z$ distribution used $z=\tfrac12\log F$ and is not the correlation $z$ transformation.
+
+## Worked example
+
+If a model comparison yields a mean square of $24$ on $3$ degrees of freedom and an error mean square of $4$ on $20$ degrees of freedom, the variance ratio is $F=24/4=6$. Its reference distribution is $F_{3,20}$, not an F distribution with the degrees of freedom reversed.
+
+## History and attribution
+
+Fisher derived the distribution in 1924 while unifying several sampling problems. That work also treated the historically named Fisher B distribution, a related noncentral radial sampling law rather than another modern synonym for F. Snedecor chose the letter F in Fisher’s honor and developed influential tables and teaching conventions, which is why “Fisher–Snedecor distribution” is also used. Cochran’s later theorem—occasionally labeled Fisher–Cochran—clarifies the independent chi-square decompositions behind many F tests; it is not a separate Fisher theorem in this index.
+
+## Modern use
+
+F statistics appear in analysis of variance, nested linear-model tests, overall regression tests, variance-component work, and power calculations through noncentral F laws. Software generally reports the statistic, two degrees of freedom, and a tail probability.
+
+## Limits and debates
+
+Exact classical F laws require the stated independence and normal-error structure. Heteroskedasticity, dependence, data-driven model selection, or a denominator near zero can invalidate the reference distribution. A significant F test says that a modeled contrast exists; it does not identify which scientific explanation is correct.

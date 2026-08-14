@@ -1,0 +1,58 @@
+---
+title: The Cornish–Fisher expansion
+slug: cornish-fisher-expansion
+summary: The Cornish–Fisher expansion corrects normal quantiles using skewness, kurtosis, and higher cumulants of a nearly normal distribution.
+aliases: [Cornish–Fisher asymptotic expansion, inverse Cornish–Fisher expansion, multivariate Cornish–Fisher expansion]
+fields: [statistical-inference]
+kind: method
+period: 1937–1938
+difficulty: advanced
+attribution:
+  status: co-developed
+  note: Edmund A. Cornish and Fisher jointly derived the named quantile expansion from cumulant-based approximations.
+collaborators: [Edmund A. Cornish]
+prerequisites: [Normal quantiles, Cumulants, Asymptotic expansions]
+related: [fisher-z-transformation, significance-tests-and-p-values]
+references: [cornish-fisher-1938, hall-1992]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Normal approximations are convenient but can miss tail probabilities when a statistic is skewed or unusually heavy-tailed. The Cornish–Fisher expansion translates estimates of those departures into an explicit adjustment to a normal cutoff.
+
+## Intuition
+
+Begin with the normal quantile $z_p$. Positive skewness stretches the right tail and shifts many upper quantiles; excess kurtosis changes both shoulders and extremes. The expansion adds polynomial corrections in $z_p$, ordered by their asymptotic size.
+
+## Prerequisites
+
+Let a standardized random variable have mean zero, variance one, skewness $\gamma_1$, and excess kurtosis $\gamma_2$. The approximation is most defensible when these corrections are small in the asymptotic regime that produced them.
+
+## Formal statement
+
+To the first commonly used orders, its $p$ quantile is approximated by
+
+$$q_p\approx z_p+\frac{\gamma_1}{6}(z_p^2-1)
++\frac{\gamma_2}{24}(z_p^3-3z_p)
+-\frac{\gamma_1^2}{36}(2z_p^3-5z_p).$$
+
+Further terms involve higher cumulants and products of lower ones. An “inverse” expansion reverses the approximation; multivariate versions are later generalizations rather than the original construction.
+
+## Worked example
+
+For $p=0.95$, $z_p\approx1.645$. If $\gamma_1=0.6$ and only the first skewness term is retained, the correction is $0.6(1.645^2-1)/6\approx0.171$. The adjusted quantile is about $1.816$, reflecting a longer right tail.
+
+## History and attribution
+
+Cornish and Fisher published the expansion together in work dated 1937 and issued in the journal volume commonly catalogued as 1938. Its name should preserve Cornish’s equal authorship. It belongs to the wider Edgeworth and Gram–Charlier tradition, but it targets quantiles rather than directly approximating a density or distribution function.
+
+## Modern use
+
+It appears in risk measurement, higher-order confidence approximations, bootstrap theory, and simulation diagnostics. It is attractive when cumulants are available analytically and repeatedly solving for a quantile would be expensive.
+
+## Limits and debates
+
+An asymptotic series need not define a monotone quantile function, and truncation can behave badly in far tails or under large skewness and kurtosis. Estimated higher moments are themselves unstable. A Cornish–Fisher number is an approximation, not a guaranteed valid distribution.

@@ -1,0 +1,56 @@
+---
+title: Fisher–Yates normal scores
+slug: fisher-yates-normal-scores
+summary: Fisher–Yates normal scores replace ranks by expected standard-normal order statistics for distribution-free and rank-based analysis.
+aliases: [Fisher–Yates normal-score transformation, expected normal order-statistic scores, normal scores transformation, rank inverse normal transformation]
+fields: [statistical-inference]
+kind: method
+period: "1938"
+difficulty: intermediate
+attribution:
+  status: co-developed
+  note: Fisher and Frank Yates tabulated expected normal order statistics; later approximations and rank-based procedures generalized their use.
+collaborators: [Frank Yates]
+prerequisites: [Ranks, Normal distribution, Order statistics]
+related: [fisher-z-transformation, significance-tests-and-p-values]
+references: [fisher-yates-1938, lunneborg-2005]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Ranks are robust to monotone changes of measurement but have uneven spacing. Normal scores map them to a symmetric, interpretable scale that approximates where ordered observations from a standard normal sample would fall.
+
+## Intuition
+
+The smallest observation receives a negative score, the median a score near zero, and the largest a positive score. Extreme ranks are farther apart because normal tails are farther apart on the quantile scale.
+
+## Prerequisites
+
+For a sample of size $n$, let $R_i$ be observation $i$’s rank. Exact Fisher–Yates scores are expectations $\mathbb E[Z_{(r)}]$ of standard-normal order statistics; common formulas approximate them with normal quantiles.
+
+## Formal statement
+
+A widely used approximation is
+
+$$z_i=\Phi^{-1}\left(\frac{R_i-a}{n+1-2a}\right),$$
+
+where $\Phi^{-1}$ is the standard-normal quantile and $a$ is a plotting-position constant. Exact expected order-statistic scores are not identical to every such rank inverse-normal formula.
+
+## Worked example
+
+With $n=5$ and the simple $a=0$ rule, ranks $1$ through $5$ map to $\Phi^{-1}(1/6),\ldots,\Phi^{-1}(5/6)$, approximately $[-0.967,-0.431,0,0.431,0.967]$.
+
+## History and attribution
+
+Fisher and Yates published tables of normal scores in 1938 for practical rank procedures. Their joint eponym refers specifically to expected normal order statistics. Later plotting-position constants, inverse-normal transformations, and normal-score tests should not be attributed wholesale to them.
+
+## Modern use
+
+Normal scores appear in rank tests, robust correlation, quantitative genetics, nonparametric combination methods, and preprocessing of skewed variables. They preserve order and can reduce the leverage of raw outliers.
+
+## Limits and debates
+
+The transformation changes units and marginal shape but does not make a multivariate data set jointly normal or repair confounding. Results depend slightly on the plotting-position convention and treatment of ties. Applying scores before model validation can conceal scientifically meaningful tail structure.

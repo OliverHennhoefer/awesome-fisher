@@ -1,0 +1,57 @@
+---
+title: k-statistics and unbiased cumulants
+slug: k-statistics
+summary: Fisher’s k-statistics are symmetric sample statistics constructed to estimate population cumulants without finite-sample bias.
+aliases: [Fisher’s k-statistics, univariate Fisher k-statistics, multivariate Fisher k-statistics, Fisher k-statistics, k statistic, polykays, unbiased cumulant estimators, Fisher cumulants]
+fields: [statistical-inference]
+kind: method
+period: "1929"
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher systematized k-statistics as unbiased estimators of cumulants; later authors developed polykays and combinatorial formulations.
+collaborators: []
+prerequisites: [Moments, Cumulants, Symmetric statistics]
+related: [cornish-fisher-expansion, fisher-information-and-score]
+references: [fisher-1929-moments, speed-1983]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Sample moments are easy to calculate but are generally biased for higher population cumulants. k-statistics remove that bias exactly under independent sampling, making them foundational tools for finite-sample moment calculations.
+
+## Intuition
+
+Repeated indices in powers of a sample sum create extra terms that have no population analogue. k-statistics combine power sums so those unwanted coincidences cancel, leaving an expectation equal to the desired cumulant.
+
+## Prerequisites
+
+For independent identically distributed observations $X_1,\ldots,X_n$, let $\bar X$ be the sample mean and $s^2=\sum_i(X_i-\bar X)^2/(n-1)$ the usual sample variance.
+
+## Formal statement
+
+The first two k-statistics are
+
+$$k_1=\bar X,\qquad
+k_2=\frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar X)^2.$$
+
+They satisfy $\mathbb E(k_1)=\kappa_1$ and $\mathbb E(k_2)=\kappa_2$, the first two population cumulants. Higher $k_r$ are polynomial combinations of sample power sums with $\mathbb E(k_r)=\kappa_r$ when the required moments exist.
+
+## Worked example
+
+For data $1,2,3$, $k_1=2$. The squared deviations sum to $2$, so $k_2=2/(3-1)=1$. Dividing by $n$ instead would give $2/3$, the biased empirical second central moment.
+
+## History and attribution
+
+Fisher developed the general theory in his 1929 work on moments and product moments of sampling distributions. The letter $k$ reflects cumulants, historically also called semi-invariants. Polykays, which estimate products of cumulants, and partition-lattice treatments are later developments.
+
+## Modern use
+
+k-statistics appear in unbiased skewness and kurtosis estimation, sampling theory, method-of-moments calculations, random-effects work, signal processing, and symbolic statistics. Their combinatorics also connect cumulants with set partitions.
+
+## Limits and debates
+
+Unbiasedness does not guarantee low variance: high-order k-statistics can be extremely unstable and require large samples and finite high moments. Terminology varies across software, where “sample kurtosis” may denote several incompatible corrections.

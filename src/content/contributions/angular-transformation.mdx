@@ -1,0 +1,58 @@
+---
+title: Fisher’s angular transformation
+slug: angular-transformation
+summary: Fisher’s angular transformation applies an arcsine square root to a proportion to make binomial sampling variance approximately constant.
+aliases: [Fisher angular transformation, Fisher arcsine transformation, Fisher arcsine square-root transformation, angular transformation]
+fields: [statistical-inference]
+kind: method
+period: "1922"
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher derived the angular scale in his analysis of binomial sampling, although later authors refined its small-sample form and uses.
+collaborators: []
+prerequisites: [Binomial distribution, Variance stabilization, Delta method]
+related: [significance-tests-and-p-values, likelihood-and-maximum-likelihood]
+references: [fisher-1922-dominance-ratio, anscombe-1948, warton-hui-2011]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+A raw binomial proportion has variance $p(1-p)/n$, so its uncertainty changes with its mean. Fisher’s transformation was an early way to put proportions on a scale with approximately constant variance before generalized linear models were readily available.
+
+## Intuition
+
+The square root spreads values near zero, while the arcsine bends the scale near both zero and one. Together they expand the boundaries and compress the middle just enough to offset the binomial mean–variance relationship to first order.
+
+## Prerequisites
+
+For $X\sim\operatorname{Binomial}(n,p)$, write $\hat p=X/n$. Conventions differ by a factor of two: some authors use $\arcsin\sqrt{\hat p}$ and others use twice that angle.
+
+## Formal statement
+
+With $g(p)=2\arcsin\sqrt p$, the delta method gives
+
+$$g'(p)=\frac{1}{\sqrt{p(1-p)}}
+\quad\text{and}\quad
+\operatorname{Var}\{g(\hat p)\}\approx\frac1n.$$
+
+Thus the transformed variance is approximately independent of $p$ away from difficult boundary cases. Anscombe-type corrections adjust $X$ and $n$ to improve small-sample behavior.
+
+## Worked example
+
+For $40$ successes in $100$ trials, $g(0.4)=2\arcsin\sqrt{0.4}\approx1.369$ radians. The approximate standard error on this convention is $1/\sqrt{100}=0.1$. Interpretation must return to the proportion scale by $p=\sin^2(g/2)$.
+
+## History and attribution
+
+Fisher used the angular transformation in his 1922 work on the dominance ratio. Later corrections and applications form a broader lineage; not every arcsine-based procedure is a separate Fisher contribution. The transformation became especially common in biology and ecology.
+
+## Modern use
+
+It remains useful for historical replication, some variance-stabilizing calculations, and specialized meta-analytic settings. Its simple standard-error approximation can also illuminate why raw proportions have unequal precision.
+
+## Limits and debates
+
+For ordinary binomial regression, a model with a binomial likelihood and interpretable link is usually preferable. Transformation can discard denominator information, complicate interpretation, behave awkwardly at boundaries, and still fail under overdispersion. Modern critiques therefore warn against applying it by reflex.

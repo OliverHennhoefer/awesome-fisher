@@ -1,0 +1,58 @@
+---
+title: Fisher’s g test for periodicity
+slug: fishers-g-test
+summary: Fisher’s g test compares the largest periodogram ordinate with total spectral power to detect a hidden sinusoidal component.
+aliases: [Fisher’s g-statistic, Fisher’s g-test, Fisher’s exact g-test, Fisher’s test of significance in harmonic analysis, Fisher’s test for hidden periodicity, Fisher g test, Fisher g statistic, Fisher test for periodicity, Fisher periodogram test]
+fields: [statistical-inference]
+kind: method
+period: "1929"
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher derived the maximum-periodogram test for harmonic analysis; it is unrelated to the later likelihood-ratio G test for contingency tables.
+collaborators: []
+prerequisites: [Fourier transform, Periodogram, White noise]
+related: [significance-tests-and-p-values, fishers-method]
+references: [fisher-1929-harmonic, brockwell-davis-1991]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+A time series may contain a strong repeating cycle even when its phase and frequency are unknown. Fisher’s test asks whether one Fourier frequency captures too large a share of the series’ total variation to be plausible under white noise.
+
+## Intuition
+
+Under noise alone, spectral power is spread irregularly but not usually dominated by one frequency. A sinusoidal signal creates a pronounced periodogram peak. Dividing the largest peak by all spectral power makes the statistic independent of the unknown noise variance.
+
+## Prerequisites
+
+For an evenly spaced, mean-adjusted series, compute periodogram ordinates $I_1,\ldots,I_m$ at the Fourier frequencies. The classical null assumes independent Gaussian white noise.
+
+## Formal statement
+
+Fisher’s statistic is
+
+$$g=\frac{\max_j I_j}{\sum_{j=1}^{m} I_j}.$$
+
+For suitable $x$, its exact upper-tail probability can be written by inclusion–exclusion as
+
+$$P(g\ge x)=\sum_{k=1}^{\lfloor1/x\rfloor}(-1)^{k-1}{m\choose k}(1-kx)^{m-1}.$$
+
+## Worked example
+
+If five ordinates are $[1,2,2,3,12]$, then $g=12/20=0.6$. The statistic records concentration, not raw amplitude: multiplying every ordinate by ten leaves $g$ unchanged.
+
+## History and attribution
+
+Fisher presented the test in his 1929 paper on harmonic analysis. Later spectral theory clarified its assumptions and extended testing beyond Fourier-grid sinusoids. This test should not be called simply “Fisher’s G-test” without context: the log-likelihood-ratio G statistic for categorical data is a different method.
+
+## Modern use
+
+The test remains a reference method for periodicity and spectral peaks. Related maximum-periodogram tests appear in signal processing, astronomy, rhythm analysis, and genomics, often with simulation or multiple-frequency corrections.
+
+## Limits and debates
+
+Autocorrelation, trends, uneven sampling, non-Gaussian noise, and frequencies between Fourier bins change the null distribution. Selecting preprocessing or a frequency range after viewing the spectrum also changes the test. A large peak need not represent a stable physical cycle.

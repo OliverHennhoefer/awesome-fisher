@@ -1,0 +1,57 @@
+---
+title: The Fisher–Tippett extreme-value theorem
+slug: fisher-tippett-extreme-values
+summary: The Fisher–Tippett theorem classifies the possible nondegenerate limiting forms of suitably normalized sample maxima or minima.
+aliases: [Fisher–Tippett theorem, Fisher–Tippett–Gnedenko theorem, extremal types theorem, extreme value theorem, Fisher–Tippett distribution, Fisher–Tippett type I distribution, Fisher–Tippett type II distribution, Fisher–Tippett type III distribution]
+fields: [statistical-inference]
+kind: principle
+period: 1928–1943
+difficulty: advanced
+attribution:
+  status: co-developed
+  note: Fisher and Leonard Tippett established the three extremal types; Boris Gnedenko later supplied the definitive convergence conditions.
+collaborators: [Leonard H. C. Tippett, Boris V. Gnedenko]
+prerequisites: [Limit distributions, Sample maxima, Tail behavior]
+related: [significance-tests-and-p-values, likelihood-and-maximum-likelihood]
+references: [fisher-tippett-1928, coles-2001]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Engineering failures, floods, heat records, and financial losses depend on extremes rather than averages. The theorem says that maxima from many underlying distributions converge, after rescaling, to only three basic shapes.
+
+## Intuition
+
+Repeatedly take the largest observation in a block. Although the raw maximum grows or approaches an endpoint, shifting and scaling can stabilize its distribution. Tail behavior—not the center of the parent distribution—determines which limiting type appears.
+
+## Prerequisites
+
+Let $M_n=\max(X_1,\ldots,X_n)$ for independent identically distributed observations. Seek constants $a_n>0$ and $b_n$ such that $(M_n-b_n)/a_n$ has a nondegenerate limit.
+
+## Formal statement
+
+If such a limit exists, it belongs—up to location and scale—to the generalized extreme-value family
+
+$$G_\xi(x)=\exp\left[-(1+\xi x)^{-1/\xi}\right],
+\qquad 1+\xi x>0,$$
+
+with the $\xi\to0$ limit giving Gumbel type I, $\xi>0$ Fréchet type II, and $\xi<0$ Weibull type III.
+
+## Worked example
+
+Maxima of exponential observations are in the Gumbel domain. Taking $b_n=\log n$ and $a_n=1$ gives $P(M_n-\log n\le x)\to\exp(-e^{-x})$.
+
+## History and attribution
+
+Fisher and Tippett’s 1928 paper identified the limiting forms. Gnedenko later established rigorous domain-of-attraction conditions, hence the fuller name Fisher–Tippett–Gnedenko theorem. Gumbel, Fréchet, and Weibull are credited for the individual types and their development; “Fisher–Tippett distribution” is an imprecise collective label, not one single distribution.
+
+## Modern use
+
+Extreme-value theory supports return-level estimates, environmental risk, structural reliability, insurance, hydrology, and tail modeling. Block-maxima methods use the generalized extreme-value family; peaks-over-threshold methods use the related generalized Pareto family.
+
+## Limits and debates
+
+Asymptotic convergence can be slow, and dependence or nonstationarity changes effective extremes. Extrapolating beyond observed data is highly uncertain. Choosing blocks, thresholds, covariates, and tail families can dominate the numerical answer.

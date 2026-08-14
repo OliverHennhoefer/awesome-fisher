@@ -1,0 +1,52 @@
+---
+title: The Fisher–Yates shuffle
+slug: fisher-yates-shuffle
+summary: The Fisher–Yates shuffle generates a uniformly random permutation by repeatedly selecting from the items that have not yet been placed.
+aliases: [Fisher–Yates random shuffle, Fisher–Yates randomization algorithm, original Fisher–Yates shuffle, pencil-and-paper Fisher–Yates method, modern Fisher–Yates shuffle, Durstenfeld shuffle, Knuth shuffle, inside-out Fisher–Yates shuffle]
+fields: [experimental-design]
+kind: method
+period: 1938 and later algorithms
+difficulty: introductory
+attribution:
+  status: co-developed
+  note: Fisher and Frank Yates published the original table-based procedure; Richard Durstenfeld devised the in-place computer version, later popularized by Donald Knuth.
+collaborators: [Frank Yates, Richard Durstenfeld, Donald E. Knuth]
+prerequisites: [Permutations, Uniform random integers]
+related: [randomization-replication-and-blocking, factorial-designs-and-confounding]
+references: [fisher-yates-1938, knuth-1998]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Random treatment orders, simulation, card games, and resampling all require permutations without systematic preference. Fisher–Yates gives an exact uniform shuffle when its random integer choices are uniform.
+
+## Intuition
+
+Choose one of all remaining items for the last position, then one of those still remaining for the next position, and continue. Every completed ordering corresponds to one sequence of choices with probability $1/n!$.
+
+## Prerequisites
+
+Start with an array $a_0,\ldots,a_{n-1}$ and a source capable of drawing each integer in a requested inclusive range with equal probability.
+
+## Formal statement
+
+The modern in-place algorithm iterates $i=n-1,n-2,\ldots,1$: draw $j$ uniformly from $\{0,\ldots,i\}$ and swap $a_i$ with $a_j$. Because the selected element for position $i$ is uniform among the $i+1$ remaining elements, induction gives a uniform permutation.
+
+## Worked example
+
+For $[A,B,C]$, first choose one of indices $0,1,2$ for the last position, then one of the remaining two for the middle. Each of the six permutations has probability $(1/3)(1/2)=1/6$.
+
+## History and attribution
+
+Fisher and Yates published a pencil-and-paper procedure in their 1938 statistical tables, using random-number tables and striking selected items from a list. Durstenfeld described the efficient in-place computer algorithm in 1964, and Knuth later popularized it. “Modern Fisher–Yates” should therefore retain those later credits.
+
+## Modern use
+
+The shuffle is a standard primitive in software libraries, randomized algorithms, permutation tests, experimental allocation, and machine-learning data pipelines. The inside-out variant constructs a new random permutation while reading items sequentially.
+
+## Limits and debates
+
+The proof assumes an unbiased integer generator. Using a random real with rounding, taking a generator modulo a nondividing range, or swapping every position with any of all $n$ positions creates bias. Reproducibility also requires recording the generator and seed, not only the algorithm’s name.

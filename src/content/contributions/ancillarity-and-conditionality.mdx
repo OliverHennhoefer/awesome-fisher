@@ -1,0 +1,58 @@
+---
+title: Ancillarity and conditional inference
+slug: ancillarity-and-conditionality
+summary: An ancillary statistic has a distribution free of the parameter and can define the relevant conditional reference set for inference.
+aliases: [Fisher’s principle of ancillarity, Fisher’s conditionality principle, Fisher’s problem of the Nile, Fisher’s Nile example, Neyman–Fisher paradox, ancillary statistic, Fisher ancillarity, Fisher conditionality principle, conditional inference, ancillary complement, recovery of ancillary information, Nile problem]
+fields: [statistical-inference]
+kind: principle
+period: 1934–1950s
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher introduced ancillary statistics and made conditioning on them central to his inferential program; later principles and refinements have multiple formulations.
+collaborators: []
+prerequisites: [Sufficiency, Conditional distributions, Likelihood]
+related: [sufficiency, likelihood-and-maximum-likelihood, fiducial-inference, fisher-information-and-score]
+references: [fisher-1934-annals, ghosh-reid-fraser-2010, cox-2006]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Two experiments can produce the same likelihood but have different precision because of how the data were generated. Ancillary information can identify which experiment effectively occurred and therefore which repeated-sampling comparison is relevant.
+
+## Intuition
+
+Imagine first tossing a fair coin to choose between a precise and an imprecise measuring instrument. The coin result says nothing about the unknown quantity, but once observed it says a great deal about the uncertainty of the measurement. Conditioning on that result avoids averaging precision across an experiment that did not happen.
+
+## Prerequisites
+
+For data $X\sim P_\theta$, a statistic $A(X)$ is ancillary when its sampling distribution does not depend on $\theta$. A statistic $T$ is sufficient when the conditional distribution of $X$ given $T$ does not depend on $\theta$; the two concepts play different roles.
+
+## Formal statement
+
+Ancillarity means
+
+$$P_\theta\{A(X)\in B\}=P\{A(X)\in B\}
+\quad\text{for every }\theta.$$
+
+Conditional inference evaluates the distribution of an inferential statistic $T$ given $A=a$, rather than its unconditional distribution. Basu’s later theorem shows that a boundedly complete sufficient statistic is independent of every ancillary statistic under its assumptions.
+
+## Worked example
+
+If an instrument indicator $A$ is chosen with probability $1/2$ independently of $\theta$, and $X\mid A=a\sim N(\theta,\sigma_a^2)$, then $A$ is ancillary. After observing $A=1$, a confidence interval should use $\sigma_1$ rather than average over both $\sigma_1$ and $\sigma_2$.
+
+## History and attribution
+
+Fisher introduced the term in 1934, using problems including the Nile data to argue that relevant information can remain outside a reduced sufficient statistic. The resulting disagreement with Neyman is sometimes called the Neyman–Fisher paradox; it is a foundational example, not a distinct probability law. Fisher later treated conditionality as part of a connected program involving likelihood and fiducial inference. The strong conditionality principle and modern conditional-likelihood methods are later formalizations, not a single theorem authored only by Fisher.
+
+## Modern use
+
+Ancillary conditioning informs exact inference, higher-order likelihood approximations, conditional logistic regression, matched studies, and assessments of post-experiment precision. Approximate ancillaries are important when exact ones do not exist.
+
+## Limits and debates
+
+Ancillaries may be nonunique, unavailable, or hard to recognize, and different choices can lead to different conditional analyses. How strongly one ought to condition is foundationally disputed. An ancillary statistic is not “irrelevant data”; it is parameter-free data that may be highly relevant to precision.

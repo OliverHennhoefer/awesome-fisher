@@ -1,0 +1,60 @@
+---
+title: Fisher scoring
+slug: fisher-scoring
+summary: Fisher scoring maximizes a likelihood by updating parameters with the score and expected Fisher information rather than the observed Hessian.
+aliases: [method of scoring, Fisher scoring algorithm, Fisher scoring method, Fisher scoring iteration]
+fields: [statistical-inference]
+kind: method
+period: "1925"
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher presented the method of scoring as part of his likelihood theory; later numerical and regression treatments generalized the algorithm.
+collaborators: []
+prerequisites: [Likelihood, Score function, Fisher information, Matrix algebra]
+related: [fisher-information-and-score, likelihood-and-maximum-likelihood, information-bounds-and-efficiency]
+references: [fisher-1925-estimation, hinkley-1980, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Likelihood equations often have no closed-form solution. Fisher scoring turns the inferential quantities already supplied by the model—the score and expected information—into a practical iterative estimator.
+
+## Intuition
+
+Newton’s method uses the local curvature of the particular observed data. Scoring replaces that possibly noisy curvature with its model expectation. The update moves in the direction of increasing likelihood, scaled so that steep and shallow parameter directions are treated comparably.
+
+## Prerequisites
+
+Let $U(\theta)=\partial\ell(\theta)/\partial\theta$ be the score vector and $I(\theta)=\mathbb E[-\partial^2\ell(\theta)/\partial\theta\partial\theta^\top]$ the expected information matrix.
+
+## Formal statement
+
+Starting at $\theta^{(0)}$, Fisher scoring iterates
+
+$$\theta^{(t+1)}=\theta^{(t)}+I\!\left(\theta^{(t)}\right)^{-1}U\!\left(\theta^{(t)}\right).$$
+
+Newton–Raphson has the same form but uses the observed negative Hessian. For canonical generalized linear models, scoring yields the familiar iteratively reweighted least-squares calculation.
+
+## Worked example
+
+For independent Bernoulli data with success count $x$, $U(p)=x/p-(n-x)/(1-p)$ and $I(p)=n/[p(1-p)]$. One scoring step gives
+
+$$p_{\text{new}}=p+\frac{x-np}{n}=x/n,$$
+
+so this simple model reaches the maximum-likelihood estimate immediately.
+
+## History and attribution
+
+Fisher described the “method of scoring” in his 1925 theory of statistical estimation. The eponym applies to the expected-information update, not to every Newton-like optimizer. Modern convergence theory, line searches, trust regions, and large-scale implementations are later numerical developments.
+
+## Modern use
+
+Scoring is used in generalized linear models, likelihood fitting, variance-component estimation, and algorithms whose curvature matrix is easier or stabler to average than to observe. Closely related natural-gradient methods also precondition a gradient with information geometry.
+
+## Limits and debates
+
+An iteration can diverge, step outside the parameter space, or encounter singular information. Expected curvature may be expensive, and it need not improve global behavior. Practical implementations often add damping, constraints, or alternative optimization methods.

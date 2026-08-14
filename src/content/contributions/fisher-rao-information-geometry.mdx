@@ -1,0 +1,56 @@
+---
+title: Fisher–Rao information geometry
+slug: fisher-rao-information-geometry
+summary: Fisher–Rao geometry treats Fisher information as a coordinate-invariant metric measuring local distinguishability between probability distributions.
+aliases: [Fisher information geometry, Fisher information metric, Fisher metric, Fisher–Rao metric, Rao metric, Fisher–Rao distance, Fisher–Rao geometry, Fisher–Rao norm, Fisher information distance, Fisher divergence, relative Fisher information, quantum Fisher information, quantum Fisher information matrix, statistical manifold, information geometry]
+fields: [statistical-inference]
+kind: concept
+period: 1922–1945 and later
+difficulty: advanced
+attribution:
+  status: associated
+  note: Fisher supplied the information tensor; C. R. Rao explicitly interpreted it as a Riemannian metric, and later authors built information geometry.
+collaborators: [C. R. Rao]
+prerequisites: [Fisher information, Matrix calculus, Differential geometry]
+related: [fisher-information-and-score, information-bounds-and-efficiency, fisher-scoring]
+references: [fisher-1922-foundations, rao-1945, ay-etal-2017]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Parameter coordinates are arbitrary: the same family might be described by a probability, its log odds, or another smooth transformation. The Fisher–Rao metric measures statistical separation in a way that does not depend on that choice of coordinates.
+
+## Intuition
+
+Nearby distributions are far apart when small parameter changes noticeably alter their probabilities and close when the changes are hard to detect. Fisher information supplies exactly this local sensitivity. Integrating local lengths along a path produces a geometric distance.
+
+## Prerequisites
+
+For a smooth model $p(x\mid\theta)$, let $I(\theta)$ be its Fisher information matrix. A tangent displacement $d\theta$ describes an infinitesimal change of distribution.
+
+## Formal statement
+
+The squared infinitesimal line element is
+
+$$ds^2=d\theta^\top I(\theta)d\theta.$$
+
+Under a smooth one-to-one reparameterization, both $d\theta$ and $I$ transform so that $ds^2$ is unchanged. The Fisher–Rao distance is the shortest path length induced by this metric; it is not generally the same object as “relative Fisher information” or score divergence.
+
+## Worked example
+
+For a Bernoulli parameter $p$, $I(p)=1/[p(1-p)]$. Set $\phi=2\arcsin\sqrt p$. Because $d\phi/dp=1/\sqrt{p(1-p)}$, the metric becomes $ds^2=d\phi^2$. The curved probability interval is flat on the angular coordinate.
+
+## History and attribution
+
+Fisher defined information in inferential terms. Rao’s 1945 paper made the decisive geometric step by using the information quadratic form as a Riemannian metric and studying distance. Later work by many mathematicians and statisticians developed connections, divergences, dual geometry, and the modern field. “Fisher–Rao” properly credits two distinct contributions.
+
+## Modern use
+
+The metric appears in information geometry, natural-gradient optimization, statistical shape analysis, asymptotic testing, and comparisons of probability models. Quantum Fisher information is a later analogue for quantum states and measurements, not a separate contribution by Fisher.
+
+## Limits and debates
+
+The metric is local; closed-form global distances are rare and model boundaries can be singular or infinitely far away. It depends on the chosen statistical model even though it is invariant to its coordinates. Empirical Fisher matrices used in machine learning may differ materially from the expected Fisher information defining this geometry.

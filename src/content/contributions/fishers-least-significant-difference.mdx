@@ -1,0 +1,57 @@
+---
+title: Fisher’s least significant difference
+slug: fishers-least-significant-difference
+summary: Fisher’s least significant difference compares pairs of treatment means using the pooled error variance from an analysis of variance.
+aliases: [Fisher’s least significant difference, Fisher’s least significant difference test, Fisher’s LSD procedure, Fisher’s protected LSD, Fisher’s unprotected LSD, Fisher–Hayter procedure, Fisher LSD, protected Fisher LSD, least significant difference test]
+fields: [experimental-design, statistical-inference]
+kind: method
+period: 1930s
+difficulty: introductory
+attribution:
+  status: introduced
+  note: Fisher developed least significant differences within his analysis-of-variance framework; later multiple-comparison theory clarified its error rates.
+collaborators: []
+prerequisites: [Analysis of variance, t distribution, Standard error]
+related: [analysis-of-variance, randomization-replication-and-blocking, f-distribution-and-variance-ratios]
+references: [fisher-1935-design, montgomery-2017, hayter-1986]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+An overall ANOVA can show that treatment means are not all equal but does not say which pairs differ. Fisher’s least significant difference turns the experiment’s common error estimate into a threshold for pairwise comparisons.
+
+## Intuition
+
+Each difference of means has a standard error derived from replication and the pooled residual variation. A pair is called different when its observed gap exceeds a $t$ critical value times that standard error.
+
+## Prerequisites
+
+Assume a randomized experiment with a valid common error mean square $MSE$, residual degrees of freedom $\nu$, and treatment means based on independent groups. The simplest formula below allows unequal replication.
+
+## Formal statement
+
+For treatment means $\bar Y_i$ and $\bar Y_j$, the two-sided threshold at level $\alpha$ is
+
+$$LSD_{ij}=t_{1-\alpha/2,\nu}
+\sqrt{MSE\left(\frac1{n_i}+\frac1{n_j}\right)}.$$
+
+The pair is declared different when $|\bar Y_i-\bar Y_j|>LSD_{ij}$. A “protected” procedure first requires a significant overall ANOVA F test.
+
+## Worked example
+
+If $MSE=9$, $n_i=n_j=10$, $\nu=36$, and $t_{0.975,36}\approx2.03$, then $LSD\approx2.03\sqrt{9(0.2)}\approx2.72$. Means differing by $3$ pass the pairwise threshold.
+
+## History and attribution
+
+Fisher developed the method in the same experimental-design program that established ANOVA and pooled error estimation. It was intended for planned scientific comparisons, not as a license to search every pair after seeing the data. Later work formalized familywise error and showed when the preliminary F test offers protection.
+
+## Modern use
+
+LSD comparisons remain common in agricultural and biological experiments, especially with a small number of preplanned contrasts. The Fisher–Hayter procedure is Hayter’s later modification using a studentized-range critical value; it is not the original LSD. Model-based estimated marginal means generalize the calculation to more complex designs.
+
+## Limits and debates
+
+With many unplanned pairwise comparisons, ordinary LSD does not control the familywise error rate. A significant omnibus test does not generally cure this problem for more than three groups. Tukey, Dunnett, Holm, or prespecified contrasts are often more appropriate, depending on the scientific question.
