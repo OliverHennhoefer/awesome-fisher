@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ReferenceList from '@/components/ReferenceList.astro';
+---
+
+<BaseLayout title="Smoking and lung cancer" description="Fisher’s opposition to causal conclusions about smoking and lung cancer, including his alternative hypotheses and industry relationship." pagefind>
+  <article class="page-shell narrow">
+    <p class="eyebrow">Historical context / public health</p>
+    <h1 data-pagefind-meta="title">When skepticism became obstruction.</h1>
+    <p class="lede">In the 1950s, Fisher publicly attacked the emerging conclusion that cigarette smoking causes lung cancer. Some methodological questions were legitimate; his overall intervention became increasingly difficult to separate from tobacco-industry interests.</p>
+
+    <h2>The evidence he challenged</h2>
+    <p>Large observational studies found a strong association, dose response, and consistency between smoking and lung cancer. Fisher emphasized that association alone does not prove causation and proposed alternatives, including genetic predisposition that might influence both smoking and disease.</p>
+
+    <h2>Study design and causal judgment</h2>
+    <p>No single observational association establishes causality. But causal inference accumulates across design, magnitude, temporal order, biological evidence, negative controls, and the failure of alternatives to explain the pattern. Fisher’s critiques often treated uncertainty as a reason to withhold the conclusion rather than ask which explanation best fit the whole record.</p>
+
+    <h2>Conflict of interest</h2>
+    <p>Fisher accepted paid consultancy work from the Tobacco Manufacturers’ Standing Committee while participating in the public controversy. A modern account must disclose that relationship. It does not mechanically prove every technical point false, but it materially changes how advocacy and selective doubt should be evaluated.</p>
+
+    <h2>Why the episode matters</h2>
+    <p>The controversy is a warning against converting expertise in statistical uncertainty into a demand for impossible certainty. It also illustrates why transparent funding and conflict-of-interest disclosure are part of evidence assessment.</p>
+
+    <h2>References</h2>
+    <ReferenceList ids={['stolley-1991', 'box-1978', 'yates-mather-1963']} />
+  </article>
+</BaseLayout>

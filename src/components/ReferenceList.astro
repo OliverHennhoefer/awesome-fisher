@@ -1,0 +1,22 @@
+---
+import { referencesById } from '@/data/references';
+
+interface Props { ids: string[]; }
+const refs = Astro.props.ids.map((id) => {
+  const reference = referencesById.get(id);
+  if (!reference) throw new Error(`Unknown reference: ${id}`);
+  return reference;
+});
+---
+
+<ol class="reference-list">
+  {refs.map((reference) => (
+    <li id={`ref-${reference.id}`}>
+      <span>
+        {reference.authors} ({reference.year}). <cite>{reference.title}</cite>. {reference.venue}.{' '}
+        <a href={reference.url}>{reference.doi ? `doi:${reference.doi}` : 'Open source'}</a>
+        <span class="source-type">{reference.category.replace('-', ' ')}</span>
+      </span>
+    </li>
+  ))}
+</ol>

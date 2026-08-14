@@ -1,0 +1,58 @@
+---
+title: Fisher information and the score
+slug: fisher-information-and-score
+summary: The score measures local likelihood slope, while Fisher information measures how sharply data can distinguish nearby parameter values.
+aliases: [Fisher information, information matrix, Fisher score, score function, expected information]
+fields: [statistical-inference]
+kind: concept
+period: 1922–1925
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fisher developed the score and information concepts as central parts of likelihood theory; later authors formalized their geometric and decision-theoretic roles.
+collaborators: []
+prerequisites: [Likelihood, Derivatives, Expectation, Variance]
+related: [likelihood-and-maximum-likelihood, sufficiency, fisher-consistency]
+references: [fisher-1922-foundations, fisher-1934-annals, cox-2006, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Fisher information connects model sensitivity, estimator precision, hypothesis tests, and the geometry of probability models. It explains why some experiments can estimate a parameter much more precisely than others even with the same sample size.
+
+## Intuition
+
+The score asks which way—and how strongly—the log-likelihood slopes at a proposed parameter. Information asks how much that slope fluctuates when data are repeatedly generated from the model. A sharply curved likelihood makes nearby parameter values easier to tell apart than a flat one.
+
+## Prerequisites
+
+Let $\ell(\theta;X)$ be a differentiable log-likelihood. Standard identities require regularity conditions that permit differentiation under the integral and keep the support from changing with $\theta$.
+
+## Formal statement
+
+The score is $U(\theta)=\partial\ell(\theta;X)/\partial\theta$. Under regularity conditions, $\mathbb E_\theta[U(\theta)]=0$ and
+
+$$I(\theta)=\mathbb E_\theta[U(\theta)^2]
+=-\mathbb E_\theta\left[\frac{\partial^2\ell}{\partial\theta^2}\right].$$
+
+For several parameters, the outer product becomes an information matrix.
+
+## Worked example
+
+For one Bernoulli observation, $U(p)=X/p-(1-X)/(1-p)$ and $I(p)=1/[p(1-p)]$. For $n$ independent observations, information adds: $I_n(p)=n/[p(1-p)]$. This predicts the familiar variance scale $p(1-p)/n$.
+
+## History and attribution
+
+Fisher introduced “information” as an inferential quantity and integrated it with likelihood, sufficiency, and efficient estimation. The modern information matrix, scoring algorithms, information geometry, and lower-bound theory were developed through a broader lineage.
+
+## Modern use
+
+Information controls standard-error approximations, optimal design, score tests, natural-gradient methods, and asymptotic likelihood theory. Observed and expected information are related but not identical finite-sample quantities.
+
+## Limits and debates
+
+The clean identities can fail at boundaries, in mixture models, when support depends on the parameter, or under misspecification. High information inside a wrong model does not make an estimate scientifically correct; it can produce very precise answers to the wrong question.

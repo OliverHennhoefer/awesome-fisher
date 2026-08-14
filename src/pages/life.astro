@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ReferenceList from '@/components/ReferenceList.astro';
+import { withBase } from '@/data/site';
+---
+
+<BaseLayout title="Life and work" description="A concise life of Ronald A. Fisher, connecting his institutions, collaborations, scientific work, and political commitments." pagefind>
+  <div class="page-shell narrow">
+    <p class="eyebrow">Life / 1890–1962</p>
+    <h1 data-pagefind-meta="title">Ronald Aylmer Fisher</h1>
+    <p class="lede">A mathematician, statistician, geneticist, experimenter, institution-builder, and eugenic campaigner whose work permanently altered scientific practice.</p>
+
+    <div class="two-column">
+      <div>
+        <h2>From Cambridge to Rothamsted</h2>
+        <p>Fisher studied mathematics at Gonville and Caius College, Cambridge. His early interest in heredity led to the 1918 paper that reconciled Mendelian inheritance with continuous biometric variation. In 1919 he joined Rothamsted Experimental Station, where agricultural records and field trials supplied the practical problems behind analysis of variance and modern experimental design.</p>
+        <h2>London, Cambridge, Adelaide</h2>
+        <p>He became Galton Professor of Eugenics at University College London in 1933, succeeding Karl Pearson, and Arthur Balfour Professor of Genetics at Cambridge in 1943. After retiring from Cambridge, he spent his final years at the University of Adelaide.</p>
+      </div>
+      <figure>
+        <img class="portrait" src={withBase('/images/ronald-fisher-1913.jpg')} width="291" height="408" alt="Studio portrait of Ronald Fisher as a young man in 1913, wearing round spectacles and a dark suit" />
+        <figcaption class="caption">Ronald Fisher, 31 January 1913. Unknown photographer; source: University of Adelaide via Wikimedia Commons. Public domain in the United States and European Union.</figcaption>
+      </figure>
+    </div>
+
+    <h2>Scientific style and conflict</h2>
+    <p>Fisher sought exact small-sample results and a logic of inference grounded in likelihood, significance, and experimental randomization. He engaged in long, often hostile disputes with Karl Pearson, Jerzy Neyman, and Egon Pearson. Those conflicts were intellectual and institutional: journal control, academic appointments, and competing schools shaped how the arguments spread.</p>
+
+    <h2>A legacy that requires context</h2>
+    <p>Fisher was an active eugenicist, not simply a scientist who happened to hold a common private prejudice. He advocated policies shaped by hereditary interpretations of social class and reproduction. Later, his public criticism of the evidence linking smoking with lung cancer placed him against an emerging epidemiological consensus while he also served as a paid consultant to tobacco interests.</p>
+
+    <p class="callout"><strong>Editorial position.</strong> Scientific importance does not excuse harmful commitments, and moral condemnation does not make technical attribution unnecessary. This project keeps both in view.</p>
+
+    <p><a class="button secondary" href={withBase('/timeline/')}>Explore the timeline</a> <a class="button secondary" href={withBase('/context/')}>Read the historical context</a></p>
+
+    <h2>References</h2>
+    <ReferenceList ids={['yates-mather-1963', 'box-1978', 'mazumdar-1992', 'bodmer-2021', 'stolley-1991', 'fisher-archive']} />
+  </div>
+</BaseLayout>

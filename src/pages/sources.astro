@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { references, type ReferenceCategory } from '@/data/references';
+
+const groups: { id: ReferenceCategory; title: string; note: string }[] = [
+  { id: 'primary', title: 'Primary works', note: 'Books and papers by Fisher, read as historical sources rather than as their own validation.' },
+  { id: 'modern-scholarship', title: 'Modern scholarship', note: 'Technical, biographical, and historical work used to interpret the primary record.' },
+  { id: 'archive', title: 'Archives', note: 'Finding aids, digitized papers, photographs, correspondence, and publication records.' },
+  { id: 'institutional', title: 'Institutional sources', note: 'Reports and records from universities and scientific organizations.' },
+];
+---
+
+<BaseLayout title="Sources" description="Primary works, modern scholarship, and archives used by The Fisher Index." pagefind>
+  <div class="page-shell narrow">
+    <p class="eyebrow">Evidence base / {references.length} catalogued sources</p>
+    <h1 data-pagefind-meta="title">Sources</h1>
+    <p class="lede">The bibliography is shared across articles so names, titles, links, and source types remain consistent.</p>
+    {groups.map((group) => {
+      const items = references.filter(({ category }) => category === group.id);
+      if (!items.length) return null;
+      return (
+        <section>
+          <h2>{group.title}</h2>
+          <p>{group.note}</p>
+          <ol class="reference-list">
+            {items.map((reference) => (
+              <li>
+                <span>{reference.authors} ({reference.year}). <cite>{reference.title}</cite>. {reference.venue}. <a href={reference.url}>{reference.doi ? `doi:${reference.doi}` : 'Open source'}</a></span>
+              </li>
+            ))}
+          </ol>
+        </section>
+      );
+    })}
+  </div>
+</BaseLayout>

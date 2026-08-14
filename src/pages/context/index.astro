@@ -1,0 +1,43 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { withBase } from '@/data/site';
+
+const topics = [
+  {
+    href: '/context/eugenics-and-legacy/',
+    label: 'Eugenics and institutional legacy',
+    text: 'Fisher’s sustained advocacy, the institutions that amplified it, and how commemoration has changed.',
+  },
+  {
+    href: '/context/scientific-disputes/',
+    label: 'Scientific disputes',
+    text: 'The conflicts with Karl Pearson, Jerzy Neyman, and Egon Pearson—and what was genuinely at stake.',
+  },
+  {
+    href: '/context/smoking-and-lung-cancer/',
+    label: 'Smoking and lung cancer',
+    text: 'Fisher’s criticism of causal evidence, his alternative hypotheses, and his tobacco-industry relationship.',
+  },
+];
+---
+
+<BaseLayout title="Historical context" description="Historical and ethical context for Ronald Fisher’s scientific work, eugenics, disputes, and public-health interventions." pagefind>
+  <div class="page-shell">
+    <div class="narrow">
+      <p class="eyebrow">Field V / historical context</p>
+      <h1 data-pagefind-meta="title">Context is part of the record.</h1>
+      <p class="lede">A serious account of Fisher cannot alternate between technical admiration and historical silence. These essays connect the mathematics to the institutions, conflicts, and consequences around it.</p>
+      <p class="callout"><strong>This is not a balance sheet.</strong> Technical achievements and harmful commitments are not quantities that cancel one another. Each requires its own evidence and judgment.</p>
+    </div>
+    <div class="card-grid">
+      {topics.map((topic, index) => (
+        <article class="contribution-card">
+          <span class="meta">Context / 0{index + 1}</span>
+          <h3><a href={withBase(topic.href)}>{topic.label}</a></h3>
+          <p>{topic.text}</p>
+          <div class="meta">Documented historical account</div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

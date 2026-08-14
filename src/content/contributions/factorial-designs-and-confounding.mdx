@@ -1,0 +1,56 @@
+---
+title: Factorial designs and confounding
+slug: factorial-designs-and-confounding
+summary: Factorial designs vary several factors together, estimating main effects and interactions with deliberate control of which effects are inseparable.
+aliases: [factorial experiment, interaction, fractional factorial, confounding in design]
+fields: [experimental-design]
+kind: design
+period: 1920s–1930s
+difficulty: intermediate
+attribution:
+  status: materially-advanced
+  note: Fisher championed factorial experimentation and developed systematic confounding with blocks; later design theorists greatly expanded fractional and optimal designs.
+collaborators: [Frank Yates]
+prerequisites: [Factors and levels, Randomization, Analysis of variance]
+related: [randomization-replication-and-blocking, analysis-of-variance]
+references: [fisher-1935-design, fisher-1926-field, montgomery-2017, lehmann-2011]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Changing one factor at a time cannot reveal interactions efficiently. A factorial design studies factors jointly, often extracting several answers from the same experimental runs.
+
+## Intuition
+
+With fertilizer and irrigation each at two levels, the four combinations reveal two main effects and whether the effect of fertilizer changes with irrigation. Blocking may force one high-order contrast to be mixed with block differences; deliberate confounding chooses that sacrifice in advance.
+
+## Prerequisites
+
+Factors must have operationally meaningful levels, and the experimental unit and assignment scheme must be clear. “Interaction” describes non-additivity on the chosen response scale.
+
+## Formal statement
+
+For a $2^2$ design, a simple model is
+
+$$Y=\mu+\alpha A+\beta B+\gamma AB+\varepsilon.$$
+
+Orthogonal assignments let the contrasts for $A$, $B$, and $AB$ be estimated independently in a balanced design.
+
+## Worked example
+
+Run all four fertilizer–irrigation combinations on plots within each replicate. If fertilizer helps only under high irrigation, the interaction contrast is large; averaging over irrigation would hide the scientifically important dependency.
+
+## History and attribution
+
+Fisher argued for factorial arrangements against one-factor-at-a-time experimentation and developed their analysis at Rothamsted. Yates made major contributions to computational methods, confounding schemes, and the practical design tradition.
+
+## Modern use
+
+Factorial logic drives industrial experiments, A/B/n tests, agricultural trials, screening designs, and response-surface methods. Fractional factorials trade selected aliases for fewer runs.
+
+## Limits and debates
+
+Large full factorials grow exponentially. High-order interactions are difficult to estimate and explain, while fractional designs depend on assumptions about which effects are negligible. An interaction is scale-dependent and should not be interpreted without plotting fitted responses.

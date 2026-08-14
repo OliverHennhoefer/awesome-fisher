@@ -1,0 +1,56 @@
+---
+title: The Fisher–KPP wave of advance
+slug: fisher-kpp-wave
+summary: The Fisher–KPP equation couples local growth with spatial diffusion and predicts traveling waves through which an advantageous gene or population spreads.
+aliases: [Fisher equation, Fisher–KPP equation, Fisher wave, wave of advance, reaction-diffusion equation]
+fields: [genetics-evolution]
+kind: model
+period: "1937"
+difficulty: advanced
+attribution:
+  status: co-developed
+  note: Fisher and Kolmogorov, Petrovsky, and Piskunov independently published the reaction–diffusion model and traveling-wave analysis in 1937.
+collaborators: [Andrey Kolmogorov, Ivan Petrovsky, Nikolai Piskunov]
+prerequisites: [Diffusion, Logistic growth, Partial differential equations]
+related: [fundamental-theorem-natural-selection, fishers-geometric-model]
+references: [fisher-1937-wave, murray-2002, crow-1990]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+The equation is a prototype for spatial spread. Its traveling waves connect population genetics to ecology, epidemiology, chemical reactions, and nonlinear partial differential equations.
+
+## Intuition
+
+Diffusion moves individuals or alleles into neighboring space, while local logistic growth amplifies them where they arrive. Together these processes create a stable invasion front rather than instantaneous spread.
+
+## Prerequisites
+
+The simplest equation assumes continuous space and time, constant diffusion, logistic local growth, and a homogeneous environment.
+
+## Formal statement
+
+For frequency or density $u(x,t)$,
+
+$$\frac{\partial u}{\partial t}=D\frac{\partial^2u}{\partial x^2}+ru(1-u).$$
+
+It admits traveling waves with minimum speed $c=2\sqrt{Dr}$ under the classical assumptions.
+
+## Worked example
+
+An advantageous allele begins in one region. Dispersal leaks copies across the boundary; positive selection increases them locally. The transition zone moves through space at an approximately constant speed.
+
+## History and attribution
+
+Fisher published the genetic wave model in 1937. In the same year, Kolmogorov, Petrovsky, and Piskunov studied the broader mathematical equation and wave behavior independently. The compound name preserves this genuinely shared history.
+
+## Modern use
+
+Related models describe biological invasions, range expansion, epidemic fronts, gene drives, combustion, and ecological competition. Extensions include advection, stochasticity, heterogeneous landscapes, and nonlocal dispersal.
+
+## Limits and debates
+
+Real organisms disperse in jumps, landscapes vary, populations are finite, and growth need not be logistic. Heavy-tailed dispersal may accelerate fronts rather than produce a fixed speed. The deterministic wave is a baseline, not a universal law.

@@ -1,0 +1,57 @@
+---
+title: Discriminant analysis and the iris data
+slug: discriminant-analysis-and-iris
+summary: Fisher’s discriminant finds a linear projection that separates groups by maximizing between-group variation relative to within-group variation.
+aliases: [Fisher discriminant, linear discriminant analysis, LDA, iris data, Fisher criterion]
+fields: [multivariate-methods]
+kind: method
+period: "1936"
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher introduced the discriminant criterion and illustrated it with Edgar Anderson’s iris measurements; the data and botanical sampling were Anderson’s work.
+collaborators: [Edgar Anderson]
+prerequisites: [Means, Variance, Vectors, Covariance matrices]
+related: [fisher-z-transformation, likelihood-and-maximum-likelihood]
+references: [fisher-1936-discriminant, anderson-2003-combining, lehmann-2011]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+The discriminant is an early, influential bridge between statistics and supervised learning. It turns several measurements into a single direction chosen to separate labeled groups.
+
+## Intuition
+
+A useful projection places group centers far apart while keeping each projected group tight. Fisher’s criterion measures separation as a ratio, not merely as raw distance.
+
+## Prerequisites
+
+Let $\mu_1$ and $\mu_2$ be class means and $S_W$ the pooled within-class scatter matrix. Covariance must be estimable and the labels meaningful.
+
+## Formal statement
+
+For projection vector $w$, maximize
+
+$$J(w)=\frac{[w^T(\mu_1-\mu_2)]^2}{w^TS_Ww}.$$
+
+When $S_W$ is invertible, the maximizing direction is proportional to $S_W^{-1}(\mu_1-\mu_2)$.
+
+## Worked example
+
+Edgar Anderson measured sepal and petal dimensions for three iris species. A discriminant heavily weighting petal measurements separates *Iris setosa* especially clearly; the remaining two species overlap more.
+
+## History and attribution
+
+Fisher’s 1936 paper used Anderson’s measurements to demonstrate the method. Calling the dataset simply “Fisher’s iris data” misattributes the collection: Anderson assembled and published the botanical data, while Fisher supplied the famous discriminant analysis.
+
+## Modern use
+
+Linear discriminant analysis remains a classifier, dimension-reduction method, and baseline for high-dimensional extensions. Under multivariate normal class models with common covariance, it also has a probabilistic classification interpretation.
+
+## Limits and debates
+
+The classical method can fail when covariance is singular, groups are strongly non-normal, boundaries are nonlinear, or labels encode biased historical categories. The iris dataset is pedagogically convenient but too small and tidy to stand in for modern classification practice.

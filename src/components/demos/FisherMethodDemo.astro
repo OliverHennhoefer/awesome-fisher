@@ -1,0 +1,48 @@
+<section class="demo" aria-labelledby="method-demo-title">
+  <div class="demo-header">
+    <h3 id="method-demo-title">Combine independent evidence</h3>
+    <span>Interactive demonstration</span>
+  </div>
+  <div class="demo-body" id="fisher-method-demo">
+    <p>Enter comma-separated p-values. Under independent null hypotheses, their product becomes a chi-square statistic.</p>
+    <div class="control">
+      <label for="p-values">P-values</label>
+      <input id="p-values" value="0.01, 0.04, 0.03, 0.20" spellcheck="false" />
+    </div>
+    <div class="demo-output" aria-live="polite">
+      <div class="demo-grid">
+        <div><span class="meta">Statistic</span><br /><strong id="method-statistic">25.880</strong></div>
+        <div><span class="meta">Combined p</span><br /><strong id="method-result">0.0011</strong></div>
+      </div>
+      <p class="search-status" id="method-detail">8 degrees of freedom from 4 p-values.</p>
+    </div>
+    <noscript><p class="search-status">For 0.01, 0.04, 0.03, and 0.20, the statistic is 25.880 and the combined p-value is about 0.0011.</p></noscript>
+  </div>
+</section>
+
+<script>
+  import { fisherCombinedP } from '@/lib/statistics';
+
+  const root = document.querySelector<HTMLElement>('#fisher-method-demo');
+  const input = root?.querySelector<HTMLInputElement>('#p-values');
+  const statistic = root?.querySelector<HTMLElement>('#method-statistic');
+  const result = root?.querySelector<HTMLElement>('#method-result');
+  const detail = root?.querySelector<HTMLElement>('#method-detail');
+
+  function update() {
+    const values = input?.value.split(/[\s,;]+/).filter(Boolean).map(Number) ?? [];
+    try {
+      const combined = fisherCombinedP(values);
+      if (statistic) statistic.textContent = combined.statistic.toFixed(3);
+      if (result) result.textContent = combined.combinedP < 0.0001 ? '< 0.0001' : combined.combinedP.toFixed(4);
+      if (detail) detail.textContent = `${combined.degreesOfFreedom} degrees of freedom from ${values.length} p-values.`;
+    } catch {
+      if (statistic) statistic.textContent = '—';
+      if (result) result.textContent = '—';
+      if (detail) detail.textContent = 'Enter at least one number greater than 0 and no greater than 1.';
+    }
+  }
+
+  input?.addEventListener('input', update);
+  update();
+</script>

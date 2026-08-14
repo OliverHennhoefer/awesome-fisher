@@ -1,0 +1,27 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ReferenceList from '@/components/ReferenceList.astro';
+---
+
+<BaseLayout title="Scientific disputes" description="Fisher’s disputes with Karl Pearson, Jerzy Neyman, and Egon Pearson over statistical inference and institutions." pagefind>
+  <article class="page-shell narrow">
+    <p class="eyebrow">Historical context / inference</p>
+    <h1 data-pagefind-meta="title">Competing logics, competing institutions.</h1>
+    <p class="lede">Fisher’s arguments with Karl Pearson, Jerzy Neyman, and Egon Pearson were not minor quarrels over terminology. They concerned what statistical inference was for and who controlled its journals, appointments, and teaching.</p>
+
+    <h2>Karl Pearson</h2>
+    <p>Fisher’s early work corrected degrees-of-freedom problems in Pearson’s chi-square methods and challenged parts of the older biometric program. Pearson, editor of <em>Biometrika</em> and head of the established London school, resisted Fisher’s claims. Personal hostility and competition over authority intensified technical disagreements.</p>
+
+    <h2>Neyman and Egon Pearson</h2>
+    <p>Neyman–Pearson theory framed testing as a repeated-decision problem: specify alternatives, control long-run error rates, and choose rules with high power. Fisher treated significance tests as evidence against a null in a particular investigation and rejected the idea that scientific inference could be reduced to automated acceptance and rejection.</p>
+
+    <h2>The hybrid inherited by practice</h2>
+    <p>Modern textbook testing often reports a Fisherian p-value, compares it with a fixed Neyman–Pearson-style threshold, and labels the result “accept” or “reject.” This hybrid can be useful as a convention, but it is historically inaccurate to attribute the whole package to Fisher.</p>
+
+    <h2>Substance and style</h2>
+    <p>The disputes produced lasting ideas about likelihood, conditioning, power, confidence, and decision rules. Fisher’s polemical style also narrowed opportunities for clarification and collaboration. Intellectual importance does not require treating hostility as evidence of rigor.</p>
+
+    <h2>References</h2>
+    <ReferenceList ids={['lehmann-2011', 'cox-2006', 'fisher-1956-induction', 'box-1978']} />
+  </article>
+</BaseLayout>

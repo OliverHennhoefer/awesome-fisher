@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContributionCard from '@/components/ContributionCard.astro';
+import { fields, type FieldId, withBase } from '@/data/site';
+import { getPublishedContributions, type Contribution } from '@/lib/content';
+
+export async function getStaticPaths() {
+  const entries = await getPublishedContributions();
+  return Object.entries(fields).map(([id, field]) => ({
+    params: { field: id },
+    props: { id: id as FieldId, field, entries: entries.filter(({ data }) => data.fields.includes(id as FieldId)) },
+  }));
+}
+
+interface Props {
+  id: FieldId;
+  field: typeof fields[FieldId];
+  entries: Contribution[];
+}
+const { id, field, entries } = Astro.props;
+---
+
+<BaseLayout title={field.name} description={field.description}>
+  <div class="page-shell">
+    <div class="narrow">
+      <p class="eyebrow">Field {field.numeral} / {entries.length} contributions</p>
+      <h1>{field.name}</h1>
+      <p class="lede">{field.description}</p>
+      {id === 'historical-context' && <p class="callout">Contribution pages tagged here address disputed interpretations. The dedicated <a href={withBase('/context/')}>historical-context section</a> covers Fisher’s life, eugenics, and public controversies directly.</p>}
+    </div>
+    <div class="card-grid">
+      {entries.map((entry) => <ContributionCard entry={entry} />)}
+    </div>
+  </div>
+</BaseLayout>

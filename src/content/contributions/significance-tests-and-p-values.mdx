@@ -1,0 +1,57 @@
+---
+title: Fisherian significance tests and p-values
+slug: significance-tests-and-p-values
+summary: A Fisherian significance test measures how incompatible the observed statistic is with a specified null model, without mechanically choosing between two actions.
+aliases: [significance test, p-value, null hypothesis significance testing, NHST]
+fields: [statistical-inference, historical-context]
+kind: method
+period: 1920s–1950s
+difficulty: introductory
+attribution:
+  status: materially-advanced
+  note: Fisher standardized and popularized significance testing and p-values; modern NHST also mixes ideas from Neyman and Pearson that Fisher explicitly opposed.
+collaborators: []
+prerequisites: [Null model, Test statistic, Sampling distribution]
+related: [fishers-exact-test, fishers-method, randomization-replication-and-blocking]
+references: [fisher-1925-smrw, fisher-1956-induction, lehmann-2011, cox-2006]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+P-values became one of science’s most common—and most commonly misread—summaries. Understanding Fisher’s own evidential interpretation helps separate it from later fixed-threshold decision rules.
+
+## Intuition
+
+Assume a concrete null model and ask how far into the model’s tail the observed result lies. A small p-value says the data are unusual under that null and chosen test statistic. It does not say the null has a small probability of being true.
+
+## Prerequisites
+
+You need a null model, a statistic selected before seeing the result, and its distribution under the null. “More extreme” must be defined in relation to the scientific question.
+
+## Formal statement
+
+For statistic $T$ where larger values count as more discrepant, an upper-tail p-value is
+
+$$p=\Pr_{H_0}\{T(X)\geq T(x_{obs})\}.$$
+
+When the null distribution is continuous and correctly specified, p-values are uniformly distributed under $H_0$.
+
+## Worked example
+
+If a fair coin is tossed 20 times and produces 18 or more heads, a one-sided binomial p-value sums the null probabilities for 18, 19, and 20 heads. The calculation assesses the fair-coin model in that direction; it does not supply the posterior probability that the coin is fair.
+
+## History and attribution
+
+Fisher promoted tail probabilities as graded evidence and often used 0.05 as a convenient reference, not a universal law. Neyman and Egon Pearson developed a distinct framework of repeated-decision error rates. Present-day “NHST” often fuses the vocabularies while respecting neither framework cleanly.
+
+## Modern use
+
+Significance tests remain useful when the null, statistic, sampling plan, and interpretation are transparent. They are strongest alongside effect estimates, uncertainty intervals, diagnostics, and domain knowledge.
+
+## Limits and debates
+
+A p-value is not an effect size, replication probability, false-positive probability, or measure of practical importance. Selection, optional stopping, multiple testing, weak models, and publication bias can all destroy its nominal interpretation.

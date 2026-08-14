@@ -1,0 +1,56 @@
+---
+title: Fisher’s z-transformation
+slug: fisher-z-transformation
+summary: Fisher’s z-transformation maps a sample correlation to a scale with more nearly constant variance and normal sampling behavior.
+aliases: [Fisher transformation, Fisher r-to-z, arctanh transformation, correlation transformation]
+fields: [statistical-inference, multivariate-methods]
+kind: method
+period: "1921"
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher derived the transformation and its approximate normal sampling distribution for correlation coefficients from bivariate normal samples.
+collaborators: []
+prerequisites: [Pearson correlation, Normal approximation, Hyperbolic functions]
+related: [fisher-information-and-score, discriminant-analysis-and-iris]
+references: [fisher-1921-correlation, fisher-1925-smrw, anderson-2003-combining, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Raw correlations live between −1 and 1 and have a skewed, parameter-dependent sampling distribution. The transformation makes confidence intervals and comparisons easier on an unbounded scale.
+
+## Intuition
+
+Near ±1, a small change in correlation means something different from the same numerical change near 0. The inverse hyperbolic tangent stretches the ends of the interval so sampling variability becomes approximately even.
+
+## Prerequisites
+
+The classic approximation assumes independent observations from a bivariate normal population. Let $r$ be the sample correlation and $\rho$ the population correlation.
+
+## Formal statement
+
+Define
+
+$$z=\operatorname{arctanh}(r)=\frac12\log\left(\frac{1+r}{1-r}\right).$$
+
+Then $z$ is approximately normal with mean $\operatorname{arctanh}(\rho)$ and standard error $1/\sqrt{n-3}$.
+
+## Worked example
+
+With $r=0.60$ and $n=50$, $z\approx0.693$ and the standard error is about 0.146. Form an interval on the z-scale, then apply $\tanh$ to move the endpoints back to the correlation scale.
+
+## History and attribution
+
+Fisher’s 1921 paper developed the small-sample approximation and transformation. It became part of his broader program of deriving usable sampling distributions for common statistics.
+
+## Modern use
+
+The transformation remains common in correlation confidence intervals, tests comparing independent correlations, and meta-analysis of correlations.
+
+## Limits and debates
+
+The normal approximation can be poor with very small samples, non-normal data, dependence, or correlations near the boundary. It does not repair biased sampling, measurement error, nonlinear association, or the familiar fact that correlation does not establish causation.

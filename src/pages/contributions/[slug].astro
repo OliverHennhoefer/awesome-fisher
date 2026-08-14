@@ -1,0 +1,72 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContributionCard from '@/components/ContributionCard.astro';
+import ReferenceList from '@/components/ReferenceList.astro';
+import { fields, withBase } from '@/data/site';
+import { getPublishedContributions, type Contribution } from '@/lib/content';
+
+export async function getStaticPaths() {
+  const entries = await getPublishedContributions();
+  return entries.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry, entries } }));
+}
+
+interface Props { entry: Contribution; entries: Contribution[]; }
+const { entry, entries } = Astro.props as Props;
+const { Content, headings } = await render(entry);
+const related = entry.data.related.map((slug) => entries.find(({ data }) => data.slug === slug)).filter(Boolean) as Contribution[];
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.summary} pagefind>
+  <div class="page-shell article-grid">
+    <aside class="article-sidebar" aria-label="Article metadata" data-pagefind-ignore>
+      <dl>
+        <dt>Field</dt>
+        <dd>{entry.data.fields.map((field) => fields[field].name).join(' · ')}</dd>
+        <dt>Period</dt>
+        <dd>{entry.data.period}</dd>
+        <dt>Level</dt>
+        <dd>{entry.data.difficulty}</dd>
+        <dt>Attribution</dt>
+        <dd>{entry.data.attribution.status.replace('-', ' ')}</dd>
+        <dt>Reviewed</dt>
+        <dd>{entry.data.reviewedAt.toLocaleDateString('en-GB', { year: 'numeric', month: 'short', day: 'numeric' })}</dd>
+      </dl>
+    </aside>
+
+    <article>
+      <nav class="crumbs" aria-label="Breadcrumb" data-pagefind-ignore>
+        <a href={withBase('/contributions/')}>Contributions</a> / {fields[entry.data.fields[0]].name}
+      </nav>
+      <span class="eyebrow" data-pagefind-filter={`field:${entry.data.fields[0]}`}>{entry.data.kind} / {entry.data.period}</span>
+      <h1 data-pagefind-meta="title">{entry.data.title}</h1>
+      <p class="article-lede" data-pagefind-meta="summary">{entry.data.summary}</p>
+      <span class="sr-only" data-pagefind-meta="aliases">Also known as: {entry.data.aliases.join(', ')}.</span>
+      <div class="attribution-note">
+        <strong>Attribution: {entry.data.attribution.status.replace('-', ' ')}.</strong> {entry.data.attribution.note}
+      </div>
+      <div class="article-body">
+        <Content />
+      </div>
+
+      {related.length > 0 && (
+        <section aria-labelledby="related-heading">
+          <h2 id="related-heading">Related ideas</h2>
+          <div class="card-grid">{related.map((item) => <ContributionCard entry={item} />)}</div>
+        </section>
+      )}
+
+      <section aria-labelledby="references-heading">
+        <h2 id="references-heading">References</h2>
+        <ReferenceList ids={entry.data.references} />
+      </section>
+    </article>
+
+    <nav class="toc" aria-label="On this page" data-pagefind-ignore>
+      <strong>On this page</strong>
+      <ol>
+        {headings.filter(({ depth }) => depth === 2).map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+      </ol>
+    </nav>
+  </div>
+</BaseLayout>

@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { withBase } from '@/data/site';
+---
+
+<BaseLayout title="Page not found" description="The requested page is not part of The Fisher Index.">
+  <div class="page-shell narrow">
+    <p class="eyebrow">Error / 404</p>
+    <h1>This path contains no evidence.</h1>
+    <p class="lede">The page may have moved, the term may use a different name, or the contribution may not have been reviewed yet.</p>
+    <p><a class="button" href={withBase('/search/')}>Search the index</a> <a class="button secondary" href={withBase('/contributions/')}>Browse contributions</a></p>
+  </div>
+</BaseLayout>

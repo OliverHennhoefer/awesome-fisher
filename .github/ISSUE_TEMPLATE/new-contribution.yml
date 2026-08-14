@@ -1,0 +1,60 @@
+name: New contribution
+description: Propose a researched concept, method, design, principle, or model for the index.
+title: "Contribution: "
+labels: [content, needs-triage]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Proposed title and aliases
+      placeholder: Fisher scoring; method of scoring
+    validations:
+      required: true
+  - type: dropdown
+    id: field
+    attributes:
+      label: Primary field
+      options:
+        - Statistical inference
+        - Experimental design
+        - Multivariate methods
+        - Genetics and evolution
+        - Historical context
+    validations:
+      required: true
+  - type: dropdown
+    id: attribution
+    attributes:
+      label: Proposed attribution
+      options:
+        - Introduced
+        - Co-developed
+        - Materially advanced
+        - Popularized
+        - Associated
+        - Disputed
+    validations:
+      required: true
+  - type: textarea
+    id: case
+    attributes:
+      label: Why it belongs
+      description: Explain the distinct contribution and Fisher’s documented role.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary and modern sources
+      description: Include stable URLs or DOIs and identify which source supports the attribution.
+    validations:
+      required: true
+  - type: checkboxes
+    id: agreement
+    attributes:
+      label: Contributor check
+      options:
+        - label: I searched the site, IDEAS.md, and open issues for duplicates and aliases.
+          required: true
+        - label: I have read CONTRIBUTING.md and understand the content licensing terms.
+          required: true

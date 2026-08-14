@@ -1,0 +1,61 @@
+---
+title: Likelihood and maximum likelihood
+slug: likelihood-and-maximum-likelihood
+summary: Likelihood compares how strongly different parameter values support the data that were actually observed.
+aliases: [likelihood, maximum likelihood, MLE, maximum-likelihood estimation]
+fields: [statistical-inference]
+kind: method
+period: 1912–1922
+difficulty: intermediate
+attribution:
+  status: materially-advanced
+  note: Fisher separated likelihood from inverse probability and made maximum likelihood a central general method; earlier special-case maximizations existed.
+collaborators: []
+prerequisites: [Probability models, Parameters, Logarithms]
+related: [sufficiency, fisher-information-and-score, fiducial-inference]
+references: [fisher-1922-foundations, fisher-1932-likelihood, lehmann-2011, cox-2006]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Maximum likelihood supplies one reusable recipe for fitting an enormous range of statistical models. Logistic regression, generalized linear models, survival models, and much of modern machine learning inherit its basic move: choose the parameter under which the observed data would be least surprising relative to the alternatives.
+
+## Intuition
+
+A probability model runs forward—from a fixed parameter to possible data. A likelihood function holds the observed data fixed and lets the parameter vary. It is therefore not a probability distribution for the parameter. Its height only compares parameter values under the stated model.
+
+## Prerequisites
+
+You need a model $f(x;\theta)$, observed data $x$, and a parameter $\theta$ whose plausible values are to be compared. Independence often lets the joint model be written as a product.
+
+## Formal statement
+
+For observed data $x$, the likelihood is
+
+$$L(\theta;x)=f(x;\theta).$$
+
+An MLE is any value $\hat\theta$ satisfying
+
+$$\hat\theta\in\operatorname*{arg\,max}_{\theta}L(\theta;x).$$
+
+Because logarithms preserve ordering, calculations usually maximize $\ell(\theta)=\log L(\theta)$ instead.
+
+## Worked example
+
+For $k$ successes in $n$ independent Bernoulli trials, $L(p)\propto p^k(1-p)^{n-k}$. Differentiating the log-likelihood gives $k/p-(n-k)/(1-p)=0$, so $\hat p=k/n$. If 7 of 10 trials succeed, the fitted success probability is 0.7.
+
+## History and attribution
+
+Fisher gave likelihood its distinct inferential meaning and argued for maximum likelihood as a general estimation principle, especially in his 1922 foundations paper. The attribution is “materially advanced,” not “invented from nothing”: earlier writers had maximized probability expressions in particular problems.
+
+## Modern use
+
+Modern theory studies consistency, asymptotic normality, efficiency, profile likelihood, penalized likelihood, and numerical optimization. Likelihood ratios also provide tests and confidence regions.
+
+## Limits and debates
+
+An MLE can fail to exist, be non-unique, or behave poorly in small samples and irregular models. Likelihood also inherits every misspecification in the model. It measures relative support inside the chosen family; it does not by itself assign probabilities to hypotheses or parameters.

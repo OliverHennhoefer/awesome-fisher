@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getPublishedContributions } from '@/lib/content';
+import { fields, withBase } from '@/data/site';
+
+const contributions = await getPublishedContributions();
+---
+
+<BaseLayout title="Contributions" description="Browse reviewed contributions associated with Ronald A. Fisher by field, difficulty, title, or alias.">
+  <div class="page-shell">
+    <div class="narrow">
+      <p class="eyebrow">Reviewed collection / {contributions.length} entries</p>
+      <h1>Contributions</h1>
+      <p class="lede">A statistics-first foundation for a larger index. Every entry is sourced, cross-linked, and explicit about attribution.</p>
+    </div>
+
+    <section class="index-tools" aria-label="Filter contributions" data-index-tools>
+      <div class="control">
+        <label for="filter-query">Title, alias, or summary</label>
+        <input id="filter-query" type="search" placeholder="e.g. ANOVA" />
+      </div>
+      <div class="control">
+        <label for="filter-field">Field</label>
+        <select id="filter-field">
+          <option value="">All fields</option>
+          {Object.entries(fields).map(([id, field]) => <option value={id}>{field.name}</option>)}
+        </select>
+      </div>
+      <div class="control">
+        <label for="filter-difficulty">Difficulty</label>
+        <select id="filter-difficulty">
+          <option value="">All levels</option>
+          <option value="introductory">Introductory</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+    </section>
+    <p class="results-count" aria-live="polite">Showing all {contributions.length} contributions.</p>
+
+    <div class="contribution-list">
+      {contributions.map((entry) => (
+        <article
+          class="index-row"
+          data-title={`${entry.data.title} ${entry.data.aliases.join(' ')}`.toLowerCase()}
+          data-summary={entry.data.summary.toLowerCase()}
+          data-fields={entry.data.fields.join(' ')}
+          data-difficulty={entry.data.difficulty}
+        >
+          <h2><a href={withBase(`/contributions/${entry.data.slug}/`)}>{entry.data.title}</a></h2>
+          <p>{entry.data.summary}</p>
+          <div class="meta">{fields[entry.data.fields[0]].name}<br />{entry.data.difficulty}</div>
+        </article>
+      ))}
+    </div>
+    <noscript><p class="callout">All entries are shown. Enable JavaScript only if you want instant filtering.</p></noscript>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const tools = document.querySelector('[data-index-tools]');
+      if (!tools) return;
+      const query = tools.querySelector('#filter-query');
+      const field = tools.querySelector('#filter-field');
+      const difficulty = tools.querySelector('#filter-difficulty');
+      const rows = [...document.querySelectorAll('.index-row')];
+      const count = document.querySelector('.results-count');
+      const update = () => {
+        const term = query.value.trim().toLowerCase();
+        let visible = 0;
+        rows.forEach((row) => {
+          const matchesText = !term || `${row.dataset.title} ${row.dataset.summary}`.includes(term);
+          const matchesField = !field.value || row.dataset.fields.split(' ').includes(field.value);
+          const matchesDifficulty = !difficulty.value || row.dataset.difficulty === difficulty.value;
+          row.hidden = !(matchesText && matchesField && matchesDifficulty);
+          if (!row.hidden) visible += 1;
+        });
+        count.textContent = `Showing ${visible} of ${rows.length} contributions.`;
+      };
+      [query, field, difficulty].forEach((control) => control.addEventListener('input', update));
+    })();
+  </script>
+</BaseLayout>

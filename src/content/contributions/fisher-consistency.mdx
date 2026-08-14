@@ -1,0 +1,57 @@
+---
+title: Fisher consistency
+slug: fisher-consistency
+summary: An estimating rule is Fisher-consistent when its population version returns the true parameter under the assumed model.
+aliases: [Fisherian consistency, Fisher-consistent estimator, classification calibration]
+fields: [statistical-inference]
+kind: concept
+period: modern term rooted in Fisherian estimation
+difficulty: intermediate
+attribution:
+  status: associated
+  note: The modern term commemorates Fisher’s population-level approach to estimation; its current functional formulation belongs to later statistical theory.
+collaborators: []
+prerequisites: [Statistical functionals, Probability models, Loss minimization]
+related: [likelihood-and-maximum-likelihood, sufficiency, fisher-information-and-score]
+references: [fisher-1922-foundations, cox-2006, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Fisher consistency is a basic calibration check. Before studying how an estimator behaves in finite samples, ask whether its idealized population rule even targets the parameter it claims to estimate.
+
+## Intuition
+
+Replace the empirical distribution by the exact model distribution, as if an infinite amount of perfectly representative data were available. If the procedure then returns the model’s true parameter, it passes the Fisher-consistency test.
+
+## Prerequisites
+
+It helps to view an estimator as a functional $T(F)$ of a distribution $F$. For a model family $\{F_\theta\}$, the target parameter must be identifiable.
+
+## Formal statement
+
+A functional $T$ is Fisher-consistent for $\theta$ when
+
+$$T(F_\theta)=\theta\qquad\text{for every }\theta.$$
+
+For a loss-based rule, the equivalent question is whether the expected loss under $F_\theta$ is minimized at the target.
+
+## Worked example
+
+The population mean functional $T(F)=\int x\,dF(x)$ is Fisher-consistent for the mean parameter whenever that expectation exists. The population median is Fisher-consistent for a location parameter in a symmetric location family, but not automatically for the mean of an arbitrary skewed distribution.
+
+## History and attribution
+
+The label is eponymous rather than a direct title Fisher gave to a theorem. It reflects his emphasis on defining estimator properties relative to a model and a population target. Later work in robust statistics, estimating equations, and machine learning made the functional definition explicit.
+
+## Modern use
+
+The criterion appears in M-estimation, robust procedures, proper scoring rules, surrogate losses, and classification calibration. It is often the first of several properties checked for a proposed method.
+
+## Limits and debates
+
+Fisher consistency is weaker than ordinary sample consistency: it is a population identity, not a convergence theorem. A Fisher-consistent procedure may have large bias at practical sample sizes, unstable computation, high variance, or severe sensitivity when the assumed model is even slightly wrong.

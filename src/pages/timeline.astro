@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { withBase } from '@/data/site';
+
+const events = [
+  ['1890', 'Born in London', 'Ronald Aylmer Fisher is born in East Finchley on 17 February.'],
+  ['1912', 'First evolutionary paper', 'As a Cambridge undergraduate, Fisher publishes on the distribution of gene-frequency ratios.'],
+  ['1918', 'Mendelian inheritance meets biometry', 'His paper on correlations between relatives shows how many Mendelian factors can produce continuous variation.'],
+  ['1919', 'Joins Rothamsted', 'Agricultural records and field trials become the workshop for analysis of variance and experimental design.'],
+  ['1922', 'Foundations of theoretical statistics', 'Fisher organizes likelihood, sufficiency, efficiency, and information into a general estimation program.'],
+  ['1925', 'Statistical Methods for Research Workers', 'A practical book carries new tests and methods across experimental sciences.'],
+  ['1930', 'The Genetical Theory of Natural Selection', 'Fisher develops a mathematical synthesis of Mendelian genetics, natural selection, and adaptation.'],
+  ['1933', 'Galton Professor at UCL', 'He succeeds Karl Pearson in a chair explicitly tied to eugenics and continues active eugenic advocacy.'],
+  ['1935', 'The Design of Experiments', 'Randomization, replication, blocking, factorial designs, and the tea experiment appear in a unified account.'],
+  ['1936', 'Discriminant analysis', 'Fisher analyzes Edgar Anderson’s iris measurements using a linear separation criterion.'],
+  ['1943', 'Cambridge genetics chair', 'He becomes Arthur Balfour Professor of Genetics and continues experimental genetics.'],
+  ['1957–59', 'Smoking controversy', 'Fisher publicly challenges causal interpretations of the smoking–lung-cancer association and consults for tobacco interests.'],
+  ['1959', 'Moves to Adelaide', 'After retiring from Cambridge, he joins the University of Adelaide.'],
+  ['1962', 'Dies in Adelaide', 'Fisher dies on 29 July, leaving a scientific legacy that remains both foundational and contested.'],
+];
+---
+
+<BaseLayout title="Timeline" description="A chronological guide to Ronald Fisher’s scientific work, institutions, collaborations, and controversies." pagefind>
+  <div class="page-shell narrow">
+    <p class="eyebrow">1890–1962</p>
+    <h1 data-pagefind-meta="title">A life across disciplines</h1>
+    <p class="lede">The statistical, genetic, institutional, and political strands belong to one history.</p>
+    <div class="timeline">
+      {events.map(([year, title, description]) => (
+        <section class="timeline-item">
+          <span class="timeline-year">{year}</span>
+          <h2>{title}</h2>
+          <p>{description}</p>
+        </section>
+      ))}
+    </div>
+    <p><a class="button secondary" href={withBase('/life/')}>Read the concise biography</a></p>
+  </div>
+</BaseLayout>

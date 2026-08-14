@@ -1,0 +1,37 @@
+name: Correction or improvement
+description: Report a factual, mathematical, attribution, accessibility, or source problem.
+title: "Correction: "
+labels: [correction, needs-triage]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or file
+      placeholder: /contributions/fishers-method/
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Type of correction
+      options:
+        - Mathematical or technical
+        - Historical or attribution
+        - Source or citation
+        - Accessibility or language
+        - Broken link or interface
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or unclear?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Proposed correction and evidence
+      description: Include a calculation, primary source, scholarly source, or reproducible steps where applicable.
+    validations:
+      required: true

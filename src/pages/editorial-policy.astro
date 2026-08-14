@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { withBase } from '@/data/site';
+---
+
+<BaseLayout title="Editorial policy" description="The sourcing, attribution, accessibility, correction, and historical-context standards used by The Fisher Index." pagefind>
+  <article class="page-shell narrow">
+    <p class="eyebrow">Editorial standard / version 1.0</p>
+    <h1 data-pagefind-meta="title">Useful before exhaustive.</h1>
+    <p class="lede">The index grows only through reviewed entries. It does not claim that every eponym is an invention, every historical source is neutral, or every technical result remains best practice.</p>
+
+    <h2>What counts as a contribution</h2>
+    <p>A distinct concept, method, design, or model qualifies when reliable sources show that Fisher introduced it, co-developed it, materially advanced it, or made it influential. Later ideas that merely borrow his name belong in the roadmap only when the connection itself is historically or technically useful.</p>
+
+    <h2>Attribution labels</h2>
+    <ul>
+      <li><strong>Introduced:</strong> the evidence supports a substantive first formulation.</li>
+      <li><strong>Co-developed:</strong> independent or collaborative work requires shared naming.</li>
+      <li><strong>Materially advanced:</strong> earlier work existed, but Fisher supplied a decisive generalization or synthesis.</li>
+      <li><strong>Popularized:</strong> influence came chiefly through exposition, tables, teaching, or institutional reach.</li>
+      <li><strong>Associated or disputed:</strong> the eponym is common but priority is later, indirect, or contested.</li>
+    </ul>
+
+    <h2>Source standard</h2>
+    <p>Every reviewed contribution needs a primary source where one is available and a modern scholarly source. Historical claims prefer archives and specialist scholarship. Sources are linked; quotations are short and contextualized. A review date identifies when the evidence was last checked.</p>
+
+    <h2>Accessible technical writing</h2>
+    <p>Every entry begins with purpose and intuition before notation. Symbols are defined, assumptions are named, and a worked example follows the formal statement. “Accessible” does not mean removing uncertainty or presenting disputed interpretations as settled.</p>
+
+    <h2>Historical responsibility</h2>
+    <p>Context is placed where readers will encounter it, not hidden in a disclaimer. Harmful commitments are described specifically and sourced. Technical achievements are neither offered as moral compensation nor erased to simplify judgment.</p>
+
+    <h2>Corrections and authorship</h2>
+    <p>Substantive contributors are named in article metadata and Git history. Corrections use a public issue and review trail. See <a href={withBase('/contribute/')}>how to contribute</a>.</p>
+  </article>
+</BaseLayout>

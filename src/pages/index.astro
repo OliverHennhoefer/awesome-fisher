@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContributionCard from '@/components/ContributionCard.astro';
+import SearchPanel from '@/components/SearchPanel.astro';
+import { getPublishedContributions } from '@/lib/content';
+import { fields, withBase } from '@/data/site';
+
+const contributions = await getPublishedContributions();
+const featured = contributions.filter(({ data }) => data.featured).slice(0, 9);
+---
+
+<BaseLayout>
+  <div class="page-shell hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Ideas, evidence, and historical context</p>
+      <h1>One index.<br />A field of consequences.</h1>
+      <p class="lede">A critical, accessible guide to the statistical and biological ideas associated with Ronald A. Fisher—what they say, why they matter, and where their limits lie.</p>
+      <SearchPanel />
+    </div>
+    <nav class="hero-index" aria-label="Browse by field">
+      {Object.entries(fields).map(([id, field]) => (
+        <a class="pillar" href={withBase(`/fields/${id}/`)}>
+          <span class="index-number">{field.numeral}</span>
+          <strong>{field.name}</strong>
+        </a>
+      ))}
+    </nav>
+  </div>
+
+  <section class="page-shell" aria-labelledby="start-heading">
+    <div class="section-header">
+      <div>
+        <p class="eyebrow">Curated starting points</p>
+        <h2 id="start-heading">Begin with a cornerstone</h2>
+      </div>
+      <a class="text-link" href={withBase('/contributions/')}>View all {contributions.length} contributions →</a>
+    </div>
+    <div class="card-grid">
+      {featured.map((entry) => <ContributionCard entry={entry} />)}
+    </div>
+  </section>
+
+  <section class="page-shell two-column">
+    <div>
+      <p class="eyebrow">How to read this project</p>
+      <h2>Neither monument nor dismissal.</h2>
+      <p class="lede">Fisher’s work changed how experiments are designed, how evidence is quantified, and how inheritance is modeled. His commitments to eugenics and his interventions in public-health debates are also part of that history.</p>
+      <a class="button secondary" href={withBase('/context/')}>Read the historical context</a>
+    </div>
+    <div>
+      <p class="eyebrow">An evolving index</p>
+      <h2>Precise about attribution.</h2>
+      <p>Each article distinguishes between work Fisher introduced, co-developed, materially advanced, popularized, or merely became associated with. Collaborators and predecessors are named rather than compressed into an eponym.</p>
+      <a class="button secondary" href={withBase('/editorial-policy/')}>See the editorial policy</a>
+    </div>
+  </section>
+</BaseLayout>

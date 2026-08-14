@@ -1,0 +1,59 @@
+---
+title: Fisher’s exact test
+slug: fishers-exact-test
+summary: Fisher’s exact test evaluates association in a contingency table by conditioning on its margins and enumerating possible tables.
+aliases: [exact probability test, exact conditional test, Fisher exact, Lady tasting tea]
+fields: [statistical-inference, experimental-design]
+kind: method
+period: 1920s–1935
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher developed and publicized the exact conditional calculation, using the lady-tasting-tea experiment as its best-known design illustration.
+collaborators: [Muriel Bristol, William Roach]
+prerequisites: [Contingency tables, Conditional probability, Hypergeometric distribution]
+related: [significance-tests-and-p-values, randomization-replication-and-blocking, fishers-method]
+references: [fisher-1925-smrw, fisher-1935-design, lehmann-2011, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+import ExactTestDemo from '@/components/demos/ExactTestDemo.astro';
+
+## Why it matters
+
+The test gives a finite-sample calculation rather than relying on a large-sample chi-square approximation. It also exposes a central Fisherian move: condition on quantities fixed by design or treated as ancillary, then compare the observed assignment with all compatible assignments.
+
+## Intuition
+
+Fix both row totals and both column totals of a $2\times2$ table. Only one cell can vary; the other three follow from the margins. Under no association, every compatible table has a hypergeometric probability. The p-value sums probabilities of tables judged at least as extreme as the observed one.
+
+## Prerequisites
+
+The classic calculation assumes fixed margins and exchangeability under the null. A scientific one-sided alternative should be chosen before inspecting the table.
+
+## Formal statement
+
+For table $\begin{pmatrix}a&b\\c&d\end{pmatrix}$ with fixed margins, the observed-table probability is
+
+$$\Pr(A=a)=\frac{\binom{a+b}{a}\binom{c+d}{c}}{\binom{a+b+c+d}{a+c}}.$$
+
+## Worked example
+
+In the lady-tasting-tea design, four cups of each preparation order were presented and the participant had to identify four. The chance of all eight classifications being correct under random guessing with fixed totals is $1/\binom84=1/70$.
+
+<ExactTestDemo />
+
+## History and attribution
+
+Fisher used the tea experiment in *The Design of Experiments* to connect random assignment, a sharp null hypothesis, and exact enumeration. Muriel Bristol made the sensory claim and William Roach helped run the real experiment; reducing the episode to an unnamed “lady” erases both context and collaborators.
+
+## Modern use
+
+The test remains standard for small $2\times2$ tables and exact conditional inference. The same logic appears in randomization tests and conditional logistic methods.
+
+## Limits and debates
+
+Two-sided “at least as extreme” has several non-equivalent definitions. Conditioning can make the test conservative, while mid-p modifications sacrifice strict exactness. Exact does not mean assumption-free: the sampling design and exchangeability conditions still matter.

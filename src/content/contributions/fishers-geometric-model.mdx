@@ -1,0 +1,56 @@
+---
+title: Fisher’s geometric model
+slug: fishers-geometric-model
+summary: Fisher’s geometric model treats adaptation as movement toward a multidimensional optimum, relating mutational size to the chance of improvement.
+aliases: [geometric model of adaptation, Fisher model, phenotypic landscape]
+fields: [genetics-evolution]
+kind: model
+period: "1930"
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher proposed the geometric analogy in 1930; modern evolutionary genetics turned it into a family of explicit stochastic models.
+collaborators: []
+prerequisites: [Mutation, Fitness optimum, Euclidean geometry]
+related: [fundamental-theorem-natural-selection, infinitesimal-model, fisherian-runaway-selection]
+references: [fisher-1930-genetical, orr-2005, ewens-2004]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+The model gives a geometric reason that small mutations are more likely than large ones to move a well-adapted organism closer to an optimum, while allowing larger beneficial steps when a population is far away.
+
+## Intuition
+
+Represent an organism by a point whose coordinates are many traits. Fitness declines with distance from an optimum. A mutation is a random displacement. Near the optimum, a large step can overshoot in many dimensions; a small step has a better chance of landing closer.
+
+## Prerequisites
+
+The basic model assumes a single optimum, a phenotype-to-fitness mapping based on distance, and mutational directions drawn without knowledge of the optimum.
+
+## Formal statement
+
+Let phenotype $z\in\mathbb R^n$ and optimum $o$. A mutation adds vector $\delta$ and is beneficial when
+
+$$\lVert z+\delta-o\rVert < \lVert z-o\rVert.$$
+
+The probability depends on dimension, current distance, and mutational size.
+
+## Worked example
+
+On a two-trait plane, draw a circle centered on the optimum through the current phenotype. A mutation is beneficial exactly when its endpoint falls inside that circle. As the mutation grows, less of its direction circle falls inside.
+
+## History and attribution
+
+Fisher offered the model as an analogy in 1930, partly to argue for the evolutionary importance of small-effect mutations. Orr and many later authors transformed it into a quantitative theory of adaptive walks and pleiotropy.
+
+## Modern use
+
+Variants study adaptation rates, distributions of fixed effects, parallel evolution, changing environments, robustness, and the cost of complexity.
+
+## Limits and debates
+
+Real fitness landscapes can have multiple peaks, constraints, non-Euclidean trait relations, and biased mutation. Conclusions depend on how mutational size scales with dimension. The model is valuable because its assumptions are stark, not because organisms literally occupy smooth spheres.

@@ -1,0 +1,55 @@
+---
+title: Sufficiency
+slug: sufficiency
+summary: A sufficient statistic compresses the data without discarding information about the parameter inside the assumed model.
+aliases: [sufficient statistic, criterion of sufficiency, data reduction]
+fields: [statistical-inference]
+kind: concept
+period: 1920–1922
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher introduced and named sufficiency as a general criterion for judging statistics, although its modern factorization theory was developed further by others.
+collaborators: []
+prerequisites: [Conditional probability, Probability models, Statistics as functions of data]
+related: [likelihood-and-maximum-likelihood, fisher-information-and-score, fisher-consistency]
+references: [fisher-1922-foundations, fisher-1934-annals, lehmann-2011, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+Sufficiency turns “use all the relevant information” into a mathematical property. When a low-dimensional sufficient statistic exists, inference can work with that statistic instead of the full sample without losing model-based information about the target parameter.
+
+## Intuition
+
+Imagine being told only a summary $T(X)$ rather than the full data $X$. If, once that summary is known, the remaining details of $X$ tell you nothing further about $\theta$, then $T$ is sufficient. The discarded detail may still be scientifically interesting; it is merely irrelevant to $\theta$ under this model.
+
+## Prerequisites
+
+The concept is model-relative. The same statistic can be sufficient in one family and insufficient in another. Basic likelihood and conditional probability are enough to read the definition.
+
+## Formal statement
+
+A statistic $T(X)$ is sufficient for $\theta$ if the conditional distribution of $X$ given $T(X)$ does not depend on $\theta$. Under standard dominated models, the factorization theorem gives the equivalent form
+
+$$f_\theta(x)=g_\theta(T(x))h(x).$$
+
+## Worked example
+
+For $n$ Bernoulli trials with success probability $p$, the likelihood is $p^{\sum x_i}(1-p)^{n-\sum x_i}$. The sample total $T=\sum X_i$ contains all dependence on $p$; the ordering of successes and failures adds no information about $p$ in this model.
+
+## History and attribution
+
+Fisher introduced sufficiency while organizing a broader theory of estimation. Later results—notably the factorization criterion and the concepts of minimal and complete sufficiency—gave the idea its current textbook form.
+
+## Modern use
+
+Sufficiency underlies exponential-family theory, conditional inference, data reduction, and the comparison of statistical experiments. Approximate sufficiency also appears in simulation-based inference when exact likelihoods are unavailable.
+
+## Limits and debates
+
+Useful finite-dimensional sufficient statistics are rare outside special model families. A sufficient statistic preserves information only about the modeled parameter, not necessarily about model failure, outliers, subgroup structure, or future questions. Compression can therefore hide the evidence needed to challenge the model itself.

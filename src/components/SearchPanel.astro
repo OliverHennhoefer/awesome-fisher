@@ -1,0 +1,89 @@
+---
+interface Props {
+  label?: string;
+  autofocus?: boolean;
+  initialQuery?: string;
+}
+const {
+  label = 'Search 19 reviewed contributions',
+  autofocus = false,
+  initialQuery = '',
+} = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="search-panel" data-search-panel data-base={base} data-pagefind-ignore>
+  <form class="search-form" role="search">
+    <div class="control">
+      <label for="site-search">{label}</label>
+      <input id="site-search" name="q" type="search" value={initialQuery} placeholder="Try “combined p-values” or “ANOVA”" autocomplete="off" autofocus={autofocus} />
+    </div>
+    <button type="submit">Search</button>
+  </form>
+  <p class="search-status" aria-live="polite">Search titles, aliases, definitions, and article text.</p>
+  <div class="search-results"></div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-search-panel]');
+    if (!root) return;
+    const form = root.querySelector('form');
+    const input = root.querySelector('input[type="search"]');
+    const status = root.querySelector('.search-status');
+    const output = root.querySelector('.search-results');
+    const base = root.dataset.base;
+    let pagefind;
+
+    const escapeHtml = (value) => {
+      const element = document.createElement('div');
+      element.textContent = value;
+      return element.innerHTML;
+    };
+
+    async function loadPagefind() {
+      if (pagefind) return pagefind;
+      pagefind = await import(/* @vite-ignore */ `${base}pagefind/pagefind.js`);
+      await pagefind.options({ baseUrl: base });
+      return pagefind;
+    }
+
+    async function search(term) {
+      const query = term.trim();
+      if (!query) {
+        output.replaceChildren();
+        status.textContent = 'Search titles, aliases, definitions, and article text.';
+        return;
+      }
+      status.textContent = 'Searching…';
+      try {
+        const index = await loadPagefind();
+        const response = await index.search(query);
+        const items = await Promise.all(response.results.slice(0, 8).map((result) => result.data()));
+        status.textContent = `${response.results.length} result${response.results.length === 1 ? '' : 's'} for “${query}”.`;
+        output.innerHTML = items.map((item) => `
+          <article class="search-result">
+            <h2><a href="${item.url}">${escapeHtml(item.meta.title || item.url)}</a></h2>
+            <p>${item.excerpt}</p>
+          </article>
+        `).join('');
+      } catch {
+        status.textContent = 'The search index is available in the production build. Browse the contribution index while developing locally.';
+      }
+    }
+
+    let timer;
+    input.addEventListener('input', () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => search(input.value), 180);
+    });
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      search(input.value);
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const initial = params.get('q') || input.value;
+    if (initial) { input.value = initial; search(initial); }
+  })();
+</script>

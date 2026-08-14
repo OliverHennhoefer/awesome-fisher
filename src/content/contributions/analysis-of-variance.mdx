@@ -1,0 +1,57 @@
+---
+title: Analysis of variance
+slug: analysis-of-variance
+summary: Analysis of variance decomposes observed variation into components aligned with an experimental or observational model.
+aliases: [ANOVA, analysis of variance, variance decomposition, F test]
+fields: [experimental-design, statistical-inference]
+kind: method
+period: 1918–1925
+difficulty: intermediate
+attribution:
+  status: materially-advanced
+  note: Fisher unified variance decomposition, degrees of freedom, experimental structure, and F-based testing into the modern analysis-of-variance framework.
+collaborators: [Winifred Mackenzie, Frank Yates, George W. Snedecor]
+prerequisites: [Means, Variance, Linear models, Experimental units]
+related: [randomization-replication-and-blocking, factorial-designs-and-confounding, significance-tests-and-p-values]
+references: [fisher-1925-smrw, fisher-1926-field, lehmann-2011, montgomery-2017]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+## Why it matters
+
+ANOVA ties the question “where did the variation come from?” to the design that generated the data. It made multi-group experiments analyzable as structured wholes rather than as a pile of pairwise comparisons.
+
+## Intuition
+
+Total variation around the grand mean can be partitioned into variation explained by modeled sources and residual variation. A treatment effect is persuasive when its variation is large relative to an appropriate error term—not merely when group means look different.
+
+## Prerequisites
+
+Correct analysis begins with the experimental unit, randomization, and model. Independence cannot be rescued by algebra after units have been confused with repeated measurements.
+
+## Formal statement
+
+In a balanced one-way design,
+
+$$SS_{total}=SS_{between}+SS_{within}.$$
+
+Dividing sums of squares by their degrees of freedom gives mean squares, and the ratio $F=MS_{between}/MS_{within}$ has an F distribution under the classical normal, equal-variance null model.
+
+## Worked example
+
+Suppose three fertilizers are randomly assigned to equal numbers of plots. ANOVA compares variation among the three fertilizer means with plot-to-plot variation within fertilizer groups. A single global test asks whether the equal-means model is tenable before any planned contrasts are interpreted.
+
+## History and attribution
+
+Fisher forged ANOVA while analyzing agricultural records at Rothamsted. Winifred Mackenzie’s crop studies, Frank Yates’s later design work, and George Snedecor’s teaching and tables were part of the method’s development and spread.
+
+## Modern use
+
+ANOVA is best understood as linear-model bookkeeping. Its logic extends to regression, mixed models, repeated measures, designed experiments, variance components, and hierarchical models.
+
+## Limits and debates
+
+The familiar table can conceal the actual design. Unbalanced data, missingness, heteroskedasticity, dependence, and researcher-chosen post-hoc comparisons require care. A significant F test says neither which differences matter nor whether they are scientifically important.

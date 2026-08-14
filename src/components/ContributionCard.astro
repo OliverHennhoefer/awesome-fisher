@@ -1,0 +1,15 @@
+---
+import type { Contribution } from '@/lib/content';
+import { fields, withBase } from '@/data/site';
+
+interface Props { entry: Contribution; }
+const { entry } = Astro.props;
+const primaryField = fields[entry.data.fields[0]];
+---
+
+<article class="contribution-card">
+  <span class="meta">{primaryField.numeral} · {primaryField.name}</span>
+  <h3><a href={withBase(`/contributions/${entry.data.slug}/`)}>{entry.data.title}</a></h3>
+  <p>{entry.data.summary}</p>
+  <div class="meta">{entry.data.period} · {entry.data.difficulty}</div>
+</article>

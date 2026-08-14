@@ -1,0 +1,61 @@
+---
+title: Fisher’s method for combining p-values
+slug: fishers-method
+summary: Fisher’s method combines independent p-values by turning their product into a chi-square test statistic.
+aliases: [Fisher method, combined probability test, combined p-values, inverse chi-square method, product method]
+fields: [statistical-inference]
+kind: method
+period: "1925"
+difficulty: intermediate
+attribution:
+  status: introduced
+  note: Fisher presented the log-product combination in Statistical Methods for Research Workers as a general way to synthesize independent tests.
+collaborators: []
+prerequisites: [P-values, Independence, Chi-square distribution, Logarithms]
+related: [significance-tests-and-p-values, fishers-exact-test, likelihood-and-maximum-likelihood]
+references: [fisher-1925-smrw, lehmann-2011, casella-berger-2002]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+import FisherMethodDemo from '@/components/demos/FisherMethodDemo.astro';
+
+## Why it matters
+
+Several studies can each provide modest evidence in the same direction without any one crossing a conventional threshold. Fisher’s method supplies a compact global test of whether all corresponding null hypotheses could simultaneously hold.
+
+## Intuition
+
+Under a valid continuous null, a p-value is uniform on $(0,1)$. Very small p-values make $-\log p$ large. Adding these transformed values accumulates evidence without reducing the collection to “significant” versus “not significant.”
+
+## Prerequisites
+
+The classical reference distribution requires mutually independent p-values, each valid for its own null hypothesis. The method tests the intersection null that every component null is true.
+
+## Formal statement
+
+For $k$ independent p-values,
+
+$$X=-2\sum_{i=1}^{k}\log p_i.$$
+
+Under the global null, $X\sim\chi^2_{2k}$. Small p-values—through their logarithms—contribute especially strongly.
+
+## Worked example
+
+For p-values 0.01, 0.04, 0.03, and 0.20, the statistic is about 25.880 on 8 degrees of freedom, giving a combined p-value near 0.0011. The result rejects the global null but does not identify which component alternatives are true.
+
+<FisherMethodDemo />
+
+## History and attribution
+
+Fisher introduced the method in the first edition of *Statistical Methods for Research Workers*. Later meta-analysis developed many alternatives tailored to direction, effect size, weighting, and dependence.
+
+## Modern use
+
+The method appears in meta-analysis, genomics, signal detection, and omnibus testing. Its appeal is simplicity: only valid component p-values are needed.
+
+## Limits and debates
+
+Correlation among component tests changes the null distribution, sometimes drastically. The method ignores effect direction and magnitude, and a single tiny p-value can dominate. When comparable effect estimates exist, a model that combines those estimates can answer a more informative question.

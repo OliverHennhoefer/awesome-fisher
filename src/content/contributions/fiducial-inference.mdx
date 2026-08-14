@@ -1,0 +1,52 @@
+---
+title: Fiducial inference
+slug: fiducial-inference
+summary: Fiducial inference attempts to turn a sampling statement into a distribution for an unknown parameter without specifying a Bayesian prior.
+aliases: [fiducial probability, fiducial distribution, fiducial argument]
+fields: [statistical-inference, historical-context]
+kind: method
+period: 1930–1956
+difficulty: advanced
+attribution:
+  status: introduced
+  note: Fiducial inference was Fisher’s own proposed third route beyond frequentist coverage and Bayesian prior probability; its scope and coherence remain disputed.
+collaborators: []
+prerequisites: [Sampling distributions, Pivotal quantities, Confidence intervals, Bayesian priors]
+related: [likelihood-and-maximum-likelihood, significance-tests-and-p-values, sufficiency]
+references: [fisher-1932-likelihood, fisher-1956-induction, cox-2006, lehmann-2011]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+---
+
+## Why it matters
+
+Fiducial inference is historically important because it reveals Fisher’s dissatisfaction with both long-run confidence statements and subjective prior distributions. Modern generalized fiducial and confidence-distribution methods revisit parts of the ambition.
+
+## Intuition
+
+Start with a data-generating equation containing a known random quantity and an unknown parameter. After observing the data, Fisher proposed holding the data fixed and transferring the randomness to the parameter by inversion—without calling the result a Bayesian posterior.
+
+## Prerequisites
+
+The simplest examples use a pivotal quantity whose distribution does not depend on unknown parameters. More complex problems make the choice of data-generating equation consequential.
+
+## Formal statement
+
+If $X=\theta+Z$ with $Z\sim N(0,\sigma^2)$ and known $\sigma$, observing $x$ permits the inversion $\theta=x-Z$. The resulting fiducial distribution is $N(x,\sigma^2)$.
+
+## Worked example
+
+The normal-location fiducial interval numerically matches the usual confidence interval and the Bayesian posterior under a flat prior. That agreement is special: in multiparameter problems, different inversions can produce incompatible answers.
+
+## History and attribution
+
+Fisher introduced fiducial probability around 1930 and defended it for decades. Neyman, Pearson, and later statisticians challenged its probability interpretation and lack of a unique construction.
+
+## Modern use
+
+Classical fiducial language is uncommon in routine practice, but related ideas survive in exact confidence distributions, inferential models, generalized fiducial inference, and structural approaches.
+
+## Limits and debates
+
+There is no general fiducial recipe that is invariant to every equivalent representation. The method can conceal prior-like choices inside an inversion. Its most defensible examples often coincide with established confidence or Bayesian procedures, leaving the distinct interpretation contested.

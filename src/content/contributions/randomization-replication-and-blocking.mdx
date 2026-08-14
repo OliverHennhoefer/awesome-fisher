@@ -1,0 +1,57 @@
+---
+title: Randomization, replication, and blocking
+slug: randomization-replication-and-blocking
+summary: Fisher’s experimental-design principles use chance, repeated units, and local grouping to make comparisons credible and precise.
+aliases: [three principles of experimental design, local control, randomized block, randomization inference]
+fields: [experimental-design]
+kind: principle
+period: 1920s–1935
+difficulty: introductory
+attribution:
+  status: materially-advanced
+  note: Fisher synthesized and forcefully established randomization, replication, and local control as a coherent foundation for experimental design.
+collaborators: [Frank Yates, Rothamsted field researchers]
+prerequisites: [Experimental units, Treatment assignment, Sources of variation]
+related: [analysis-of-variance, factorial-designs-and-confounding, fishers-exact-test]
+references: [fisher-1926-field, fisher-1935-design, imbens-rubin-2015, montgomery-2017]
+contributors: [Oliver Hennhöfer]
+reviewedAt: 2026-08-14
+status: reviewed
+featured: true
+---
+
+import RandomizationDemo from '@/components/demos/RandomizationDemo.astro';
+
+## Why it matters
+
+These principles separate causal evidence from mere comparison. Randomization protects against systematic allocation bias, replication reveals unit-to-unit variation, and blocking removes predictable nuisance variation from the comparison.
+
+## Intuition
+
+Randomization makes hidden differences between treatment groups a matter of chance rather than choice. Replication asks the treatment question on genuinely separate units. Blocking compares like with like—for example, neighboring field plots—before combining evidence across blocks.
+
+## Prerequisites
+
+Identify the unit independently assigned to treatment. Repeated readings of one unit are not treatment replications. Blocking variables must be measured before treatment and used in the assignment scheme.
+
+## Formal statement
+
+Under a randomized design, the assignment vector $Z$ is drawn from a known set $\Omega$. For a sharp null of no effect, the randomization distribution of statistic $T$ is obtained by evaluating $T(z)$ over $z\in\Omega$.
+
+## Worked example
+
+If a field has a fertility gradient, divide it into locally homogeneous blocks and randomize one plot to each treatment within every block. Treatment comparisons are then made within blocks, reducing residual noise.
+
+<RandomizationDemo />
+
+## History and attribution
+
+Fisher developed these ideas in the practical setting of Rothamsted’s long-running agricultural experiments. The work was collective in execution: field scientists supplied problems and knowledge, while Yates and others extended the resulting designs.
+
+## Modern use
+
+The principles underpin randomized trials, online experiments, agricultural designs, matched experiments, and design-based causal inference. Covariate-adaptive assignment is a modern relative of blocking.
+
+## Limits and debates
+
+Randomization does not fix attrition, noncompliance, interference, measurement bias, or an irrelevant treatment contrast. Blocking on weak variables can add complexity without precision. Replication must reflect the population to which the conclusion is meant to generalize.
