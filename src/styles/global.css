@@ -140,6 +140,14 @@ code { font-size: .88em; }
 .section-header { display: flex; align-items: end; justify-content: space-between; gap: 2rem; border-bottom: 1px solid var(--ink); padding-bottom: .8rem; }
 .section-header h2 { margin: 0; }
 .text-link { font: 500 .78rem var(--sans); white-space: nowrap; }
+.starting-points {
+  padding-top: clamp(.5rem, 1vw, 1rem);
+  padding-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+.project-context {
+  padding-top: clamp(.5rem, 1vw, 1rem);
+  padding-bottom: clamp(.5rem, 1vw, 1rem);
+}
 
 .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-left: 1px solid var(--line); margin-top: 1.5rem; }
 .contribution-card { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.25rem; min-height: 280px; display: flex; flex-direction: column; }
@@ -287,6 +295,8 @@ button:hover, .button:hover { background: var(--paper); color: var(--ink); }
 .callout { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding: 1.25rem 0; margin: 2rem 0; }
 .callout strong { font-family: var(--sans); }
 .two-column { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); }
+.two-column .eyebrow { margin: 0 0 .5rem; }
+.two-column .eyebrow + h2 { margin-top: 0; }
 .portrait { filter: grayscale(1); border: 1px solid var(--ink); }
 .caption { font: .68rem/1.45 var(--sans); color: var(--muted); margin-top: .5rem; }
 
