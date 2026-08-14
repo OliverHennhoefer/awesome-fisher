@@ -13,7 +13,7 @@
     "build": "npm run validate && npm run build:site && npm run index && node scripts/check-dist.mjs",
     "preview": "astro preview",
     "check": "astro check",
-    "validate": "node scripts/validate-content.mjs",
+    "validate": "node scripts/validate-content.mjs && node scripts/validate-ideas.mjs",
     "test": "vitest run src",
     "test:watch": "vitest src",
     "test:e2e": "playwright test",

@@ -15,7 +15,8 @@ test('the contribution index filters by alias and difficulty', async ({ page }) 
   await expect(page.locator('.index-row:visible')).toContainText('Analysis of variance');
   await page.getByLabel('Title, alias, or summary').fill('');
   await page.getByLabel('Difficulty').selectOption('advanced');
-  await expect(page.locator('.index-row:visible')).toHaveCount(5);
+  const advancedCount = await page.locator('.index-row[data-difficulty="advanced"]').count();
+  await expect(page.locator('.index-row:visible')).toHaveCount(advancedCount);
 });
 
 test('signature calculations respond to input', async ({ page }) => {
