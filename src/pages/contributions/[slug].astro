@@ -50,7 +50,7 @@ const related = entry.data.related.map((slug) => entries.find(({ data }) => data
       </div>
 
       {related.length > 0 && (
-        <section aria-labelledby="related-heading">
+        <section class="related-ideas" aria-labelledby="related-heading">
           <h2 id="related-heading">Related ideas</h2>
           <div class="card-grid">{related.map((item) => <ContributionCard entry={item} />)}</div>
         </section>
